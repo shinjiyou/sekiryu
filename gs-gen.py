@@ -407,7 +407,7 @@ def gen_art_detail_e(artid_f):
 		aname=aname, apage=apage, d_ad=d_ad)
 
 ###############################################################################
-## MAIN制御 + デバッグ用Flask起動
+## MAIN制御 + デバッグ用のFlask起動
 ##
 #def main():
 
