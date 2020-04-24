@@ -1,0 +1,10 @@
+User-Agent:*
+Disallow:/!20180105_renewal/
+Disallow:/!20180629_renewal/
+Disallow:/from_sekiryu/
+Disallow:/mail/
+
+User-agent: Googlebot-Image
+Disallow: /art/*.jpg$
+
+User-agent: *Sitemap: https://g-sekiryu.com/sitemap.xml
