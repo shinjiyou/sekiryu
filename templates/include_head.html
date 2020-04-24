@@ -1,0 +1,82 @@
+{% autoescape False %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+
+{% if page_type == "index" %}
+  {% set title = '' %}
+{% elif page_type == "about" %}
+  {% set title = 'ギャラリー石榴について | ' %}
+{% elif page_type == "contact" %}
+  {% set title = 'お問い合わせ | ' %}
+{% elif page_type == "search" %}
+  {% set title='検索結果 | ' %}
+{% elif page_type == "site" %}
+  {% set title='サイトポリシー | ' %}
+{% elif page_type == "privacy" %}
+  {% set title='プライバシーポリシー | ' %}
+{% elif page_type == "404" %}
+  {% set title='エラー | ' %}
+{% elif page_type == "exhibitions" %}
+  {% set title='展示会 | ' %}
+{% elif page_type == "exhibitions/past" %}
+  {% set title='過去の展示会 | ' %}
+{% elif page_type == "artists" %}
+  {% set title=aname + ' | ' %}
+{% elif page_type == "art" %}
+  {% set title=aname + ' | ' %}
+{% endif %}
+<!--Facebook -->
+<meta property="og:title" content="{{ title }}ギャラリー石榴 : 松本と青山で美術作品の展示と販売">
+<meta property="og:url" content="https://g-sekiryu.com">
+<meta property="og:image" content="/static/img/thumb_fb.jpg">
+<meta property="og:description" content="草間彌生、南桂子、舟越桂などの作品を展示、販売。松本（0263-27-5396）と青山（03-6438-9690）のギャラリーです。">
+<meta property="og:site_name" content="アート,販売,購入,石榴,草間彌生,南桂子,舟越桂,版画,松本,青山,ギャラリー">
+<!--end -->
+
+<title>{{ title }}ギャラリー石榴 : 松本と青山で美術作品の展示と販売</title>
+
+<link rel="icon" href="/static/img/favicon.ico">
+<link rel="apple-touch-icon" href="/static/img/icon.png">
+<link rel="stylesheet" type="text/css" href="/static/js/lib/fixedsticky/fixedsticky.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/photoswipe/photoswipe.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/photoswipe/default-skin/default-skin.css"/>
+<link rel="stylesheet" href="/static/css/common.css">
+
+<script>
+  (function(d) {
+    var config = {
+       kitId: 'lgd3dgb',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+</script>
+
+<script src="/static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="/static/js/lib/jquery.cookie.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+  var ua = navigator.userAgent;
+  var flag = false;
+  if ((ua.indexOf('iPhone') > 0) || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
+    flag = true;
+  }
+  var c = $.cookie('pc_sp');
+  if (!flag || c == 'pc') {
+    $("meta[name='viewport']").attr('content', 'width=1280');
+  }
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9370102-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-9370102-1');
+</script>
+{% endautoescape %}

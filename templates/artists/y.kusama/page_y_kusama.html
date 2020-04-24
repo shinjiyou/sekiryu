@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>草間 彌生</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">草間 彌生</span>
+        <span class="desc">YAYOI KUSAMA<i>キャンバス・他　CANVAS, OTHER</i></span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+    </div>
+  </div>
+
+  <div class="txt">
+    <p>キャンバス、水彩、コラージュ、オブジェなど、版画以外の作品をご紹介しています。<br>
+      This page shows the non-print work (acrylic or oil on canvas, gouache or collage on paper and objects, etc.) by Yayoi Kusama.  </p>
+  </div>
+
+  <div class="art-list-wrapper">
+  {% include "include_loop.html" %}
+  </div>
+</article>
+<!-- END CONTENTS -->
+
+<!--
+     <div id="common-contents" class="clearfix">
+     <div class="common-contents-inner clearfix">
+     <hr class="crossing_line">
+     <br>
+     <strong>２次元と３次元のあいま － キャンバス／オブジェの世界</strong><br>
+     <br>
+     &nbsp;&nbsp;ドット(水玉)とネット(網目)というごくシンプルなパターンを、あらゆる方向に展開しながら、次々と新しく生みだされてきた作品の数々。
+     そのバリエーションの豊かさには驚くべきものがあります。<br>
+     &nbsp;&nbsp;うねりのあるネットの作品は、平面であるキャンバスがたえず３次元へ連れだそうとするのに対し、立体であるオブジェの場合は逆に、２次元という表層の世界へ押し返そうとするかのような感覚を生じさせます。そんなおかしな力学が、めまいのような感覚の原因になっているのかもしれません。<br>
+     &nbsp;&nbsp;多様性と一貫性。この一見して相対することばは、草間作品のどれにも矛盾なくあてはまります。シリアスな一面とユーモア感覚。こころの深層にわけいる暗さと底抜けの明るさ。そうした対極的な要素が共存するのが、草間作品のふしぎな魅力のひとつです。<br>
+     </div>
+     </div>
+   -->
+{% endautoescape %}
+{% endblock %}

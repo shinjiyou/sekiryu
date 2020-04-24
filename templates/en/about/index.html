@@ -1,0 +1,100 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyA6-08fzV0a5QKvNCnt6rcN-GnJrssP6Kw"></script>
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li>ABOUT</li>
+  </ul>
+
+  <div class="ttl flex">
+    <h1>
+      <span class="title eng">ABOUT</span>
+      <span class="desc">About ... Gallery Seikiryu</span>
+    </h1>
+  </div>
+
+  <p>
+    Gallery Sekiryu started in Matsumoto City, Nagano Prefecture in 1995.<br class="pc">
+    Since 2009, we have had two galleries, the second gallery is in Minami-Aoyama, in Tokyo.<br class="pc">
+    We introduce modern, contemporary artworks for viewing by appointment year round.<br class="pc">
+    We also hold several public exhibitions at both locations throughout the year.<br class="pc">
+  <div class="flex" id="gallery">
+    <!-- START MATSUMOTO -->
+    <div id="matsumoto">
+      <img src="/static/img/about/matsumoto.jpg">
+      <div class="txt-in">
+        <p class="eng">GALLERY SEKIRYU MATSUMOTO</p>
+        <h2>ギャラリー石榴 松本</h2>
+        <p>〒390-0821<br>
+          長野県松本市筑摩2-17-10<br>
+          Open: 10:00 - 18:00<br>
+          Tel: <span class="tel-linktext">0263-27-5396</span>　Fax: 0263-27-2351</p>
+      </div>
+      <div class="map">
+        <div id="map-matsumoto"></div>
+        <ul class="map-btn fbox">
+          <!-- <li><a href="/static/img/matsumoto.pdf" target="_blank">PDF</a></li> -->
+          <li><a href="https://goo.gl/maps/mS6zP13mUKq" target="_blank">GOOGLE MAP</a></li>
+        </ul>
+      </div>
+      <div class="txt-in">
+        <p><strong>電車でお越しの場合</strong>
+          JR松本駅より東南2km、駅前大通りを東へ直進。<br>
+          松本市美術館を左手に通過し、国道19号（やまびこ道路）を右折。すすき川を渡り、約100m先左手のグレーの建物。</p>
+        <p><strong>お車でお越しの場合</strong>
+          長野自動車道 松本ICから車で約15分（駐車場あり）</p>
+      </div>
+    </div>
+    <!-- END MATSUMOTO -->
+
+    <!-- START AOYAMA -->
+    <div id="aoyama">
+      <img src="/static/img/about/aoyama.jpg">
+      <div class="txt-in">
+        <p class="eng">GALLERY SEKIRYU MINAMI-AOYAMA Room</p>
+        <h2>ギャラリー石榴 南青山Room</h2>
+        <p>〒107-0062<br>
+          東京都港区南青山1-11-39 1139南青山2F<br>
+          Open: 10:00 - 18:00<br>
+          Tel/Fax: <span class="tel-linktext">03-6438-9690</span></p>
+      </div>
+      <div class="map">
+        <div id="map-aoyama"></div>
+        <ul class="map-btn fbox">
+          <!-- <li><a href="/static/img/aoyama.pdf" target="_blank">PDF</a></li> -->
+          <li><a href="https://goo.gl/maps/WYwsRFARnmy" target="_blank">GOOGLE MAP</a></li>
+        </ul>
+      </div>
+      <div class="txt-in">
+        <p><strong>電車でお越しの場合</strong>
+          東京メトロ銀座線／半蔵門線、都営大江戸線「青山一丁目」駅4（南）出口より徒歩4分。<br>
+          赤坂郵便局を背に外苑東通りを六本木方面へ進み、コインパーキング「三井のリパーク」を右折。直進約80m先左手の建物2F。</p>
+      </div>
+    </div>
+    <!-- END AOYAMA -->
+  </div>
+
+  <div id="outline">
+    <h2>会社概要</h2>
+    <dl>
+      <dt>商号</dt>
+      <dd>With YoU株式会社</dd>
+      <dt>名称</dt>
+      <dd>ギャラリー石榴</dd>
+      <dt>本社所在地</dt>
+      <dd>〒390-0821 <br class="sp">長野県松本市筑摩2-17-10</dd>
+      <dt>設立</dt>
+      <dd>1980年</dd>
+      <dt>許可</dt>
+      <dd>長野県公安委員会古物商許可第481329400103号<br>
+        東京都公安委員会古物商許可第301121309150号</dd>
+    </dl>
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+{% endblock %}

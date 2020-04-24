@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>草間 彌生</li>
+  </ul>
+
+  <div class="ttl fixedsticky kusama">
+    <div class="flex">
+      <h1>
+        <span class="title">草間 彌生</span>
+        <span class="desc">YAYOI KUSAMA<i>版画　PRINT<!-- （{{page_number}}/12） --></i></span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+      <div class="flex" id="sort-wrap">
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">カタログNo.から探す</span><span class="sp">カタログ</span></a></p>
+          <ul>
+            <li><a href="/artists/y.kusama_p/yk_print1.html">No.001 - No.032</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print2.html">No.033 - No.064</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print3.html">No.065 - No.096</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print4.html">No.097 - No.128</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print5.html">No.129 - No.160</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print6.html">No.161 - No.192</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print7.html">No.193 - No.224</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print8.html">No.225 - No.256</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print9.html">No.257 - No.287</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print10.html">No.288 - No.319</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print11.html">No.320 - No.351</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print12.html">No.352 - No.402</a></li>
+          </ul>
+        </div>
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">作品名（モチーフ）から探す</span><span class="sp">作品名</span></a></p>
+          <ul>
+            <li><a href="/artists/y.kusama_g/grep_NETS.html">網</a></li>
+            <li><a href="/artists/y.kusama_g/grep_PUMPKIN.html">かぼちゃ</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FRUITS.html">果物</a></li>
+            <li><a href="/artists/y.kusama_g/grep_SHOES.html">靴</a></li>
+            <li><a href="/artists/y.kusama_g/grep_COFFEE.html">コーヒーカップ</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FISH.html">魚</a></li>
+            <li><a href="/artists/y.kusama_g/grep_BUTTERFLY.html">蝶々</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FLOWER.html">花</a></li>
+            <li><a href="/artists/y.kusama_g/grep_GRAPE.html">ぶどう</a></li>
+            <li><a href="/artists/y.kusama_g/grep_HAT.html">帽子</a></li>
+            <li><a href="/artists/y.kusama_g/grep_DOTS.html">水玉</a></li>
+            <li><a href="/artists/y.kusama_g/grep_L-SQUASH.html">レモンスカッシュ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="txt">
+    <p>草間彌生の版画、およそ250種をそろえ、ご紹介しています。</p>
+    <p>This page shows about 250 prints by Yayoi Kusama across three styles (Screenprint, Lithograph and Copperplate print.)</p>
+  </div>
+
+  <div class="art-list-wrapper">
+  <!--
+    ***************************************************
+    *** 草間彌生版画のリストからの貼り付け部
+    *** ===== ここから
+    ***
+    -->
+
+    <ul class="flex art-list hanga">
+      {% for d_k in ld_k %}
+        {% if d_k['STATUS'] == "SO" or d_k['STATUS'] == "NOT"  %}
+          {% set stock = "×" %}
+          {% set is_soldout = True %}
+        {% elif d_k['STATUS'] == "HOLD1" %}
+          {% set stock = "★" %}
+        {% elif d_k['STATUS'] == "HOLD2" %}
+          {% set stock = "○  Available" %}
+        {% elif d_k['STATUS'] == "HOLD3" %}
+          {% set stock = "△" %}
+        {% else %}
+          {% set stock = "○  Available" %}
+        {% endif %}
+        <li class="{{d_k['STATUS']}}" id="no{{d_k['NUM']}}">
+          <!-- {{d_k['NUM']}} :「{{d_k['TITLE']}}」: status={{stock}}-->
+          <a href="/art/{{d_k['NUM']}}_{{d_k['ID']}}.html">
+          <div class="art load lazyload" data-bg="/static/art/img/t/{{d_k['NUM']}}_{{d_k['ID']}}.jpg" title="{{d_k['NAME']}} : {{d_k['TITLE']}}"></div>
+          <div class="name">
+            <span>No.{{d_k['NUM']}}</span>
+            <h3><strong>{{d_k['TITLE']}}</strong></h3>
+            <p>{% if d_k['EDITION'] != "" %}{{d_k['EDITION']}}<br>{% endif %}
+            {{d_k['MEDIUM']}}<br>
+            <span class="pc">{{d_k['SIZE']}}</span></p>
+          </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!--
+    ***
+    *** ===== ここまで
+    *** 草間彌生版画のリストからの貼り付け部
+    ***************************************************
+    -->
+
+    <ul class="pager">
+      {% if page_number == 1 %}
+          <li class="disable"><a href="javascript:void();"><span class="prev"></span></a></li>
+      {% else %}
+          <li class="able"><a href="/artists/y.kusama_p/yk_print{% print(page_number-1) %}.html"><span class="prev"></span></a></li>
+      {% endif %}
+          <li><a href="/artists/y.kusama_p/yk_print1.html"><span>1</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print2.html"><span>2</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print3.html"><span>3</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print4.html"><span>4</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print5.html"><span>5</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print6.html"><span>6</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print7.html"><span>7</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print8.html"><span>8</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print9.html"><span>9</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print10.html"><span>10</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print11.html"><span>11</span></a></li>
+          <li><a href="/artists/y.kusama_p/yk_print12.html"><span>12</span></a></li>
+      {% if page_number == 12 %}
+          <li class="disable"><a href="javascript:void();"><span class="next"></span></a></li>
+      {% else %}
+          <li class="able"><a href="/artists/y.kusama_p/yk_print{% print(page_number+1) %}.html"><span class="next"></span></a></li>
+      {% endif %}
+    </ul>
+  </div>
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

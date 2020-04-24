@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+{% include "include_head.html" %}
+</head>
+
+<body id="sekiryu">
+<div id="wrapper">
+  {% if page_type == "index" %}
+    {% set cssid = 'top' %}
+  {% elif page_type == "about" %}
+    {% set cssid = 'about' %}
+  {% elif page_type == "contact" %}
+    {% set cssid = 'contact' %}
+  {% elif page_type == "exhibitions" %}
+    {% set cssid='exhibitions' %}
+  {% elif page_type == "exhibitions/past" %}
+    {% set cssid='past' %}
+  {% elif page_type == "artists" %}
+    {% set cssid='artists' %}
+    {% if aname == "COLLECTION" %}
+      {% set css_collection=' collection' %}
+    {% endif %}
+  {% elif page_type == "art" %}
+    {% set cssid='detail' %}
+  {% else %}
+    {% set cssid='others' %}
+  {% endif %}
+  <div class="flex{{css_collection}}" id="{{cssid}}">
+
+  <header id="left">
+  {% include "include_header.html" %}
+  </header>
+
+
+{% block content %}
+
+{% endblock %}
+
+  </div>
+
+  <footer>
+  {% include "include_footer.html" %}
+  </footer>
+
+  {% include "include_footer_artists_navi.html" %}
+</div>
+
+{% include "include_footer_PhotoSwipe.html" %}
+
+</body>
+
+</html>

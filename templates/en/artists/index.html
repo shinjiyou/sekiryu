@@ -1,0 +1,87 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+<ul id="pkz">
+  <li><a href="/">TOP</a></li>
+  <li>COLLECTION</li>
+</ul>
+
+<div class="ttl fixedsticky">
+  <div class="flex">
+    <h1>
+      <span class="title eng">COLLECTION</span>
+      <span class="desc">Display in alphabetical order</span>
+    </h1>
+    <div class="flex" id="sort-wrap">
+      <div class="sort" id="by-artists">
+        <p><a href="javascript:void(0);"><span class="pc">Search by Artist Name</span><span class="sp">Artist Name</span></a></p>
+        <ul class="smooth">
+          {% for key, val in d_artists.items() %}
+          <li><a href="#{{key}}"><span>{{val}}</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="art-list-wrapper">
+
+  <!--
+   ***************************************************
+   *** Gallery Collection (NORMAL TABLE部)
+   *** ===== ここから
+   -->
+  <ul class="collect-list">
+  {% for d_s in ld_s %}
+    {% if d_s['STATUS'] == "SO" or d_s['STATUS'] == "NOT"  %}
+      {% set stock = "×" %}
+      {% set is_soldout = True %}
+    {% elif d_s['STATUS'] == "HOLD1" %}
+      {% set stock = "★" %}
+    {% elif d_s['STATUS'] == "HOLD2" %}
+      {% set stock = "○  Available" %}
+    {% elif d_s['STATUS'] == "HOLD3" %}
+      {% set stock = "△" %}
+    {% else %}
+      {% set stock = "○  Available" %}
+    {% endif %}
+    <!-- {{d_s['NUM']}} :「{{d_s['TITLE']}}」: stock={{stock}}-->
+    {% if d_s['is_dup'] == True %}
+      <li class="{{d_s['STATUS']}}" id="{{d_s['ID']}}">
+      <a href="/en/art/{{d_s['NUM']}}_{{d_s['ID']}}.html" id="no{{d_s['NUM']}}">
+      <h2>{{d_s['NAME_E']}}</h2>
+    {% else %}
+      <li class="skip {{d_s['STATUS']}}">
+      <a href="/en/art/{{d_s['NUM']}}_{{d_s['ID']}}.html" id="no{{d_s['NUM']}}">
+      <!-- SKIP!! : <{{d_s['ID']}}> -->
+      <h2></h2>
+    {% endif %}
+      <img class="art load lazyload img-ofi" data-src="/static/art/img/t/{{d_s['NUM']}}_{{d_s['ID']}}.jpg" alt="{{d_s['NAME_E']}} : {{d_s['TITLE_E']}}">
+      <div class="name">
+        <span>No.{{d_s['NUM']}}</span>
+        <h3><strong>{{d_s['TITLE_E']}}</strong></h3>
+        <p>{% if d_s['EDITION_E'] != "" %}{{d_s['EDITION_E']}}<br>{% endif %}
+        {{d_s['MEDIUM_E']}}<br>
+        <span class="pc">{{d_s['SIZE']}}</span></p>
+      </div>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+  <!--
+   *** ===== ここまで
+   *** Gallery Collection (NORMAL TABLE部)
+   ***************************************************
+ -->
+
+</div>
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

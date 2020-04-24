@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>舟越 桂</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">舟越 桂</span>
+        <span class="desc">KATSURA FUNAKOSHI</span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+    {% include "include_loop.html" %}
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+<!-- <div id="common-contents" class="clearfix">
+     <div class="common-contents-inner clearfix">
+
+     <br>
+     <hr class="crossing_line"><br>
+
+     <strong>人のすがた、人のかたち</strong><br>
+     <br>
+     クスノキを素材にする人物像でしられる木彫作家・<strong>舟越桂</strong>は、
+     一貫して「人のすがた」にこだわり、制作をつづけてきました。近年のスフィンクス・シリーズも、
+     作家が取り組む「人のかたち」というテーマに大きな可能性をあたえ、
+     まだ誰も見たことのない領域をおおいに期待させる展開です。<br>
+     <br>
+     <strong>立体と平面、ライフワークとしての版画制作</strong><br>
+     <br>
+     「ひとりの人間のたたずまいのなかに、世界の成りたちや宇宙までも、
+     ふくめることができる」という作家の発想は彫刻作品のみならず、平面作品のなかにもはっきりと息づいています。
+     彫刻の設計図という、実際的な意味あいとはべつに、それらは創作のあらたな扉をひらくという、
+     明確な役割があたえられるものです。とりわけ版画制作はこの20年のあいだ、あえて毎回異なった技法で試みられ、
+     そのものが作品として自律した探求の結果であるところが大きな特徴であり、魅力にもなっています。<br>
+     <br>
+     <strong>生を見つめるまなざし</strong><br>
+     <br>
+     黙考する人間の、一瞬の挙動をとらえた不動のすがた。<br>
+     その空間に投げかけられているのは、遠くへ浮遊しながら、心の内奥をとらえるかのようなまなざしです。<br>
+     ギャラリー石榴では新旧のなかから、選りすぐった作品をご紹介しています。<br>
+     </div>
+     </div> -->
+
+{% endautoescape %}
+{% endblock %}

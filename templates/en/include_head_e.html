@@ -1,0 +1,83 @@
+{% autoescape False %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no,address=no,email=no">
+
+{% if page_type == "index" %}
+  {% set title = '' %}
+{% elif page_type == "about" %}
+  {% set title = 'about Gallery Seikryu | ' %}
+{% elif page_type == "contact" %}
+  {% set title = 'CONTACT | ' %}
+{% elif page_type == "search" %}
+  {% set title='SEARCHED | ' %}
+{% elif page_type == "site" %}
+  {% set title='Site Policy | ' %}
+{% elif page_type == "privacy" %}
+  {% set title='Privacy Policy | ' %}
+{% elif page_type == "404" %}
+  {% set title='ERROR | ' %}
+{% elif page_type == "exhibitions" %}
+  {% set title='EXHIBITION | ' %}
+{% elif page_type == "exhibitions/past" %}
+  {% set title='PAST EXHIBITION | ' %}
+{% elif page_type == "artists" %}
+  {% set title=aname + ' | ' %}
+{% elif page_type == "art" %}
+  {% set title=aname + ' | ' %}
+{% endif %}
+<!--Facebook -->
+<meta property="og:title" content="{{title}}Gallery Sekiryu : Exhibition and sale of art works in Matsumoto and Aoyama">
+<meta property="og:url" content="https://g-sekiryu.com">
+<meta property="og:image" content="/static/img/thumb_fb.jpg">
+<meta property="og:description" content="Works by Yayoi Kusama, Keiko Minami, Katsura Funakoshi, etc. are exhibited and sold. Gallery of Matsumoto (0263-27-5396) and Aoyama (03-6438-9690).">
+<meta property="og:site_name" content="hogehogehogehogehogehogehoge">
+<meta property="og:site_name" content="Art, Sale, Purchase, Ishiguro, Yayoi Kusama, Keiko Minami, Katsura Funakoshi, Prints, Matsumoto, Aoyama, Gallery">
+<!--end -->
+
+<title>{{ title }}Gallery Sekiryu : Exhibition and sale of art works in Matsumoto and Aoyama</title>
+
+<link rel="icon" href="/static/img/favicon.ico">
+<link rel="apple-touch-icon" href="/static/img/icon.png">
+<link rel="stylesheet" type="text/css" href="/static/js/lib/fixedsticky/fixedsticky.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/photoswipe/photoswipe.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/lib/photoswipe/default-skin/default-skin.css"/>
+<link rel="stylesheet" href="/static/css/common.css">
+
+<script>
+  (function(d) {
+    var config = {
+       kitId: 'lgd3dgb',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+</script>
+
+<script src="/static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="/static/js/lib/jquery.cookie.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+  var ua = navigator.userAgent;
+  var flag = false;
+  if ((ua.indexOf('iPhone') > 0) || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
+    flag = true;
+  }
+  var c = $.cookie('pc_sp');
+  if (!flag || c == 'pc') {
+    $("meta[name='viewport']").attr('content', 'width=1280');
+  }
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9370102-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-9370102-1');
+</script>
+{% endautoescape %}

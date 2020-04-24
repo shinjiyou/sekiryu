@@ -1,0 +1,151 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li>CONTACT</li>
+  </ul>
+
+  <div class="ttl flex">
+    <h1>
+      <span class="title eng">CONTACT</span>
+    </h1>
+  </div>
+
+  <div class="flex" id="flow">
+    <span>Please read <a href="/privacy/">privacy policy</a> for the handling of personal information.</span>
+    <p><a href="javascript:void(0);" class="arrow" id="btn-buy_e">Flow to purchase</a></p>
+    <p><a href="javascript:void(0);" class="arrow" id="btn-sell_e">Flow to Sell</a></p>
+  </div>
+
+  <div id="buy">
+    <h2>作品購入までの流れ</h2>
+    <div class="flex">
+      <h3><strong>STEP1</strong>購入したい<br class="pc">作品を見つけたら</h3>
+      <ul class="style01">
+        <li>お問い合わせフォームに必要事項を明記し、メッセージ欄に在庫の有無、作品の状態、価格など、知りたい事項をご記入のうえ送信してください。</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP2</strong>ギャラリー石榴からの<br class="pc">応答メール</h3>
+      <ul class="style01">
+        <li>何回かメール（電話）でやりとりしたのち、条件があえばご注文となります。</li>
+        <li>ご検討の段階で、ギャラリー（松本か南青山Room）での閲覧が可能です。事前の準備が必要ですので、日時をご予約ください。</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP3</strong>ご注文、お支払い</h3>
+      <ul class="style01">
+        <li>購入申込書にご記入いただきます。<br>
+          お支払い方法は現金、銀行振り込みなどです。</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP4</strong>ご発送</h3>
+      <ul class="style01">
+        <li>代金の受領後、お受け取り日程を相談のうえ、すみやかに発送いたします。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="sell">
+    <h2>作品売却までの流れ</h2>
+    <div class="flex">
+      <h3><strong>STEP1</strong>売却したい<br class="pc">作品があったら</h3>
+      <ul class="style01">
+        <li>お問い合わせフォームに必要事項を明記し、メッセージ欄にタイトルやサイズなどの作品情報をご記入のうえ送信してください。</li>
+        <li>電話での直接のご相談も承ります。<br>
+          松本: 0263-27-5396 / 南青山Room: 03-6438-9690</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP2</strong>ギャラリー石榴からの<br class="pc">応答メール</h3>
+      <ul class="style01">
+        <li>何回かメール（電話）でやりとりしたのち、この時点での条件があえば作品をギャラリー宛にご手配いただきます。</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP3</strong>作品査定</h3>
+      <ul class="style01">
+        <li>発送、または直接お持ち込みいただき、現品を確認のうえ査定を行い、買取価格をご連絡いたします。条件があえば買取契約を行います。条件があわない場合は、すみやかに返却いたします。</li>
+      </ul>
+    </div>
+    <div class="flex">
+      <h3><strong>STEP4</strong>お支払い</h3>
+      <ul class="style01">
+        <li>査定額にご了承いただけた場合、すみやかにお支払いいたします。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="form" class="act">
+    <form action="./postmail/postmail.cgi" method="POST">
+      <table>
+        <tbody>
+          <tr>
+            <th>ご要望<span>Type</span></th>
+            <td>
+              <input type="radio" name="type" value="購入を検討" id="input-buy" checked="checked"><label for="input-buy">購入を検討<span>BUY</span></label>
+              <input type="radio" name="type" value="売却を検討" id="input-sell"><label for="input-sell">売却を検討<span>SELL</span></label>
+              <input type="radio" name="type" value="その他" id="input-ohter"><label for="input-ohter">その他<span>OTHERS</span></label>
+            </td>
+          </tr>
+          <tr>
+            <th>お名前<sup>&#x2731;</sup><span>Name</span></th>
+            <td><input type="text" name="name" value="" tabindex="10" accesskey="c" placeholder="例）山田 太郎"></td>
+          </tr>
+          <tr>
+            <th>メールアドレス<sup>&#x2731;</sup><span>Email</span></th>
+            <td><input type="text" name="email" value="" tabindex="11" accesskey="d" placeholder="例）xxxx@g-sekiryu.com"></td>
+          </tr>
+          <tr>
+            <th>メールアドレスのご確認<sup>&#x2731;</sup><span>Email</span></th>
+            <td><input type="text" name="email-check" value="" tabindex="12" accesskey="e" placeholder="例）xxxx@g-sekiryu.com"></td>
+          </tr>
+          <tr>
+            <th>電話番号<sup>&#x2731;</sup><span>Tel</span></th>
+            <td><input type="text" name="tel" value="" tabindex="13" accesskey="f" placeholder="例）0263-27-5396"></td>
+          </tr>
+          <tr>
+            <th>郵便番号<sup>&#x2731;</sup><span>Zip code</span></th>
+            <td><input type="text" name="pincode" value="" tabindex="14" accesskey="g" placeholder="例）390-0821"></td>
+          </tr>
+          <tr>
+            <th>ご住所<sup>&#x2731;</sup><span>Address</span></th>
+            <td><input type="text" name="address" tabindex="15" accesskey="h" placeholder="例）長野県松本市筑摩 2-17-10"></td>
+          </tr>
+          <tr>
+            <th>作家名<span>Artist</span></th>
+            <td><input type="text" name="artist" value="" tabindex="16" accesskey="i" placeholder="例）草間 彌生"></td>
+          </tr>
+          <tr>
+            <th>作品名<span>Title</span></th>
+            <td><input type="text" name="title" value="" tabindex="17" accesskey="j" placeholder="例）No.2368 かぼちゃ"></td>
+          </tr>
+          <tr id="inq">
+            <th>お問い合わせ内容<span>Inquiries</span></th>
+            <td><textarea name="inquiries" rows="9" cols="50" tabindex="18" accesskey="k" placeholder="例）お問い合わせ内容を入力してください。"></textarea></td>
+          </tr>
+          <tr>
+            <th>展覧会ニュースレター、<br class="pc">ダイレクトメール<span>Newsletter</span></th>
+            <td>
+              <input type="radio" name="newsletter" value="受け取る" id="input-yes" checked="checked"><label for="input-yes">YES</label>
+              <input type="radio" name="newsletter" value="受け取らない" id="input-no"><label for="input-no">NO</label>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><button class="arrow" type="submit" value="CONFIRM" tabindex="19" accesskey="m">CONFIRM<span>確認画面へ</span></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type=hidden name="need" value="name email tel pincode address" accesskey="a">
+      <input type=hidden name="match" value="email email-check" accesskey="b">
+    </form>
+  </div>
+</article>
+<!-- END CONTENTS -->
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% autoescape False %}
+
+<!--
+  ***************************************************
+  *** 高優先度TABLE(大表示部)
+  *** ===== ここから
+  ***
+  -->
+<ul class="flex art-list pickup">
+{% for d_b in ld_b %}
+  {% if d_b['STATUS'] == "SO" or d_b['STATUS'] == "NOT"  %}
+    {% set stock = "×" %}
+    {% set is_soldout = True %}
+  {% elif d_b['STATUS'] == "HOLD1" %}
+    {% set stock = "★" %}
+  {% elif d_b['STATUS'] == "HOLD2" %}
+    {% set stock = "○  Available" %}
+  {% elif d_b['STATUS'] == "HOLD3" %}
+    {% set stock = "△" %}
+  {% else %}
+    {% set stock = "○  Available" %}
+  {% endif %}
+<li class="{{d_b['STATUS']}}" id="no{{d_b['NUM']}}">
+  <!-- {{d_b['NUM']}} :「{{d_b['TITLE']}}」: stock={{stock}}-->
+  <a href="/art/{{d_b['NUM']}}_{{d_b['ID']}}.html">
+    <div class="art load lazyload" data-bg="/static/art/img/t/{{d_b['NUM']}}_{{d_b['ID']}}.jpg" title="{{d_b['NAME']}} : {{d_b['TITLE']}}"></div>
+    <div class="name">
+      <span>No.{{d_b['NUM']}}</span>
+        <h3><strong>{{d_b['TITLE']}}</strong></h3>
+          <p>{% if d_b['EDITION'] != "" %}{{d_b['EDITION']}}<br>{% endif %}
+          {{d_b['MEDIUM']}}<br>
+          <span class="pc">{{d_b['SIZE']}}</span></p>
+    </div>
+  </a>
+</li>
+{% endfor %}
+</ul>
+
+<!--
+  ***
+  *** ===== ここまで
+  *** 高優先度TABLE(大表示部)
+  ***************************************************
+   -->
+
+
+<!--
+  ***************************************************
+  *** 低優先度TABLE(小表示部)
+  *** ===== ここから
+  ***
+  -->
+<ul class="flex art-list">
+{% for d_s in ld_s %}
+  {% if d_s['STATUS'] == "SO" or d_s['STATUS'] == "NOT"  %}
+    {% set stock = "×" %}
+    {% set is_soldout = True %}
+  {% elif d_s['STATUS'] == "HOLD1" %}
+    {% set stock = "★" %}
+  {% elif d_s['STATUS'] == "HOLD2" %}
+    {% set stock = "○  Available" %}
+  {% elif d_s['STATUS'] == "HOLD3" %}
+    {% set stock = "△" %}
+  {% else %}
+    {% set stock = "○  Available" %}
+  {% endif %}
+<li class="{{d_s['STATUS']}}" id="no{{d_s['NUM']}}">
+  <!-- {{d_s['NUM']}} :「{{d_s['TITLE']}}」: stock={{stock}}-->
+  <a href="/art/{{d_s['NUM']}}_{{d_s['ID']}}.html">
+    <div class="art load lazyload" data-bg="/static/art/img/t/{{d_s['NUM']}}_{{d_s['ID']}}.jpg" title="{{d_s['NAME']}} : {{d_s['TITLE']}}"></div>
+    <div class="name">
+      <span>No.{{d_s['NUM']}}</span>
+        <h3><strong>{{d_s['TITLE']}}</strong></h3>
+          <p>{% if d_s['EDITION'] != "" %}{{d_s['EDITION']}}<br>{% endif %}
+          {{d_s['MEDIUM']}}<br>
+          <span class="pc">{{d_s['SIZE']}}</span></p>
+    </div>
+  </a>
+</li>
+{% endfor %}
+</ul>
+
+<!--
+  ***
+  *** ===== ここまで
+  *** 高優先度TABLE(小表示部)
+  ***************************************************
+  -->
+{% endautoescape %}

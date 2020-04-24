@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>南 桂子</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">南 桂子</span>
+        <span class="desc">KEIKO MINAMI</span>
+      </h1>
+      <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p>
+      <div class="flex" id="sort-wrap">
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">作品の年代から探す</span><span class="sp">年代別</span></a></p>
+          <ul>
+            <li><a href="/artists/k.minami/page_k_minami1.html">1950年代</a></li>
+            <li><a href="/artists/k.minami/page_k_minami2.html">1960年代</a></li>
+            <li><a href="/artists/k.minami/page_k_minami3.html">1970年代以後<br class="sp"> ほか小品</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+
+    {% include "include_loop.html" %}
+
+      <ul class="pager">
+        {% if file_name=="page_k_minami1.html"  %}
+        <li class="disable"><a href="javascript:void();"><span class="prev"></span></a></li>
+        {% elif file_name=="page_k_minami2.html"  %}
+        <li class="able"><a href="/artists/k.minami/page_k_minami1.html"><span class="prev"></span></a></li>
+        {% else %}
+        <li class="able"><a href="/artists/k.minami/page_k_minami2.html"><span class="prev"></span></a></li>
+        {% endif %}
+        <li><a href="/artists/k.minami/page_k_minami1.html"><span>1</span></a></li>
+        <li><a href="/artists/k.minami/page_k_minami2.html"><span>2</span></a></li>
+        <li><a href="/artists/k.minami/page_k_minami3.html"><span>3</span></a></li>
+        {% if file_name=="page_k_minami1.html" %}
+        <li class="able"><a href="/artists/k.minami/page_k_minami2.html"><span class="next"></span></a></li>
+        {% elif file_name=="page_k_minami2.html" %}
+        <li class="able"><a href="/artists/k.minami/page_k_minami3.html"><span class="next"></span></a></li>
+        {% else %}
+        <li class="disable"><a href="javascript:void(0);"><span class="next"></span></a></li>
+        {% endif %}
+      </ul>
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+<!-- START BIOGRAPHY -->
+<article id="biography">
+  <p id="btn-close"><a href="javascript:void(0);">CLOSE</a></p>
+  <div id="biography-wrap">
+    <div class="bio-ttl">
+      <strong>BIOGRAPHY</strong>
+      <h1>南 桂子</h1>
+      <span>KEIKO MINAMI</span>
+    </div>
+    <p>1911年富山県〔現高岡市中川〕生まれ－2004年</p>
+    <p>南桂子は終戦の年に富山より上京し、30代後半は童話と絵画の制作に取り組んだ。<br>
+      後に世界的な銅版画家となる夫・浜口陽三に伴って、より良い制作環境を求め、<br>
+      1954年に43歳でパリに移住、すぐさま本格的な銅版画制作をスタートさせた。<br>
+      フリードランデル研究所で銅版画技術を学び、数年のうちフランス文科省買い上げ、<br>
+      当地の画廊との専属契約、ニューヨーク近代美術館やユニセフのクリスマスカードに採用－<br>
+      いずれも50年代末までの出来事だが、この時期に定まった南の作品世界は、<br>
+      その後続く約40年の制作活動において、いわゆる作風の変化や時代の影響とは無縁に温存され、保たれ続けた。<br>
+      ただ50～60年代の絵柄の多様性、斬新さ、そしてとりわけ抽出密度の高い無垢さには特筆すべき力がある。</p>
+    <p>「童話のような」と形容され、物語の一場面を感じさせる特徴をもつが、<br>
+      同時に、つかみどころない夢や無意識を注意深くとどめおくような、繊細な世界でもある。<br>
+      刺繍のステッチを思わせる、たどたどしさを残した線。<br>
+      密に描きこまれた部分と、大胆に空けられた余白の対比。<br>
+      一定温度を保った、抑制された色彩。<br>
+      砂糖菓子のようなかわいさとは一線を画すストイックさや寂寥感、<br>
+      淡々とした孤独が溶け合ったところに、他にはない魅力をやどしている。<br>
+      南作品への愛着は、近年、世代や国境を越えますます広がりをみせている。</p>
+    <h2>COLLECTION<span>50音順</span></h2>
+    <div class="flex">
+      <div id="ja">
+        <p>国内</p>
+        <ul class="style01">
+          <li>愛知県美術館、愛知</li>
+          <li>大川美術館、群馬</li>
+          <li>大原美術館、岡山</li>
+          <li>青梅市立美術館、東京</li>
+          <li>軽井沢現代美術館、軽井沢</li>
+          <li>京都国立近代美術館、京都</li>
+          <li>黒部市美術館、富山</li>
+          <li>群馬県立近代美術館、群馬</li>
+          <li>群馬県館林美術館、群馬</li>
+          <li>慶應義塾大学アート・センター、東京</li>
+          <li>国立国際美術館、大阪</li>
+          <li>高岡市美術館、富山</li>
+          <li>たばこと塩の博物館、東京</li>
+          <li>千葉市美術館、千葉</li>
+          <li>帝国ホテル、東京</li>
+          <li>東京国立近代美術館、東京</li>
+          <li>栃木県立美術館、栃木</li>
+          <li>富山県立近代美術館、富山</li>
+          <li>富山県立高岡西高等学校、富山</li>
+          <li>新潟県立近代美術館、新潟</li>
+          <li>兵庫県立美術館、兵庫</li>
+          <li>町田市立国際版画美術館、東京</li>
+          <li>宮崎県立美術館、宮崎</li>
+          <li>ミュゼ浜口陽三・ヤマサコレクション、東京</li>
+          <li>武蔵野市立吉祥寺美術館、東京</li>
+          <li>山梨県立美術館、山梨</li>
+          <li>和歌山県立近代美術館、和歌山</li>
+        </ul>
+      </div>
+      <div id="global">
+        <p>海外</p>
+        <ul class="style01">
+          <li>ヴィクトリア・アルバート美術館、イギリス（ロンドン）</li>
+          <li>テート・モダン、イギリス（ロンドン）</li>
+          <li>シンシナティ美術館、アメリカ（シンシナティ）</li>
+          <li>カンサス美術大学スペンサー美術館、アメリカ（カンザス州ローレンス）</li>
+          <li>ニューヨーク近代美術館、アメリカ（ニューヨーク）</li>
+          <li>ボストン公立図書館、アメリカ（ボストン）</li>
+          <li>ポートランド美術館、アメリカ（ポートランド）</li>
+          <li>ボルチモア美術館、アメリカ（ボルチモア）</li>
+          <li>レジオン・ド・ヌール勲位美術館・サンフランシスコ、アメリカ（サンフランシスコ）</li>
+          <li>ロサンゼルスカウンティ美術館、アメリカ（ロサンゼルス）</li>
+          <li>ワシントン美術館、アメリカ（ワシントン）</li>
+          <li>デュッセルドルフ美術館、ドイツ（デュッセルドルフ）</li>
+          <li>ハンス・ランゲ美術館、ドイツ（クレーフェルト）</li>
+          <li>パリ市、フランス</li>
+          <li>フランス国民教育省、フランス</li>
+          <li>フランス国立図書館、フランス</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="/static/img/artists/CV_Keiko-Minami.pdf" class="btn full mt8" target="_blank"><span>CV download</span></a>
+  </div>
+</article>
+<!-- END BIOGRAPHY -->
+
+{% endautoescape %}
+{% endblock %}

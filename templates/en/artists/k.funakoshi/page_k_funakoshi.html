@@ -1,0 +1,31 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/en/artists/">ARTISTS</a></li>
+    <li>h{{aname}}</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">{{aname}}</span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+    {% include "en/include_loop_e.html" %}
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

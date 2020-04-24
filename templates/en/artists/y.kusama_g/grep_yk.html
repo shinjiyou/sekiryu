@@ -1,0 +1,84 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/en/artists/">ARTISTS</a></li>
+    <li>Yayoi Kusama</li>
+  </ul>
+
+  <div class="ttl fixedsticky kusama">
+    <div class="flex">
+      <h1>
+        <span class="title">Yayoi Kusama</span>
+        <span class="desc">PRINT</span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+      <div class="flex" id="sort-wrap">
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">Search by Catalog Number</span><span class="sp">Catalog</span></a></p>
+          <ul>
+            <li><a href="/en/artists/y.kusama_p/yk_print1.html">No.001 - No.032</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print2.html">No.033 - No.064</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print3.html">No.065 - No.096</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print4.html">No.097 - No.128</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print5.html">No.129 - No.160</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print6.html">No.161 - No.192</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print7.html">No.193 - No.224</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print8.html">No.225 - No.256</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print9.html">No.257 - No.288</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print10.html">No.289 - No.320</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print11.html">No.321 - No.352</a></li>
+            <li><a href="/en/artists/y.kusama_p/yk_print12.html">No.353 - No.402</a></li>
+          </ul>
+        </div>
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">Search by work name or motif</span><span class="sp">Art</span></a></p>
+          <ul>
+            <li><a href="/en/artists/y.kusama_g/grep_NETS.html">Net</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_PUMPKIN.html">PUMPKIN</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_FRUITS.html">FRUIT</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_SHOES.html">SHOES</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_COFFEE.html">COFFEE</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_FISH.html">FISH</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_BUTTERFLY.html">BUTTERFLY</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_FLOWER.html">FLOWER</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_GRAPE.html">GRAPE</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_HAT.html">HAT</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_DOTS.html">DOT</a></li>
+            <li><a href="/en/artists/y.kusama_g/grep_L-SQUASH.html">LEMON SQUASH</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="txt">
+    <p>This page shows about 250 prints by Yayoi Kusama across three styles (Screenprint, Lithograph and Copperplate print.)</p>
+  </div>
+
+  <ul class="flex art-list hanga">
+    {% for d_k in ld_k %}
+      <li class="{{d_k['STATUS']}}" id="no{{d_k['NUM']}}">
+        <!-- {{d_k['NUM']}} :「{{d_k['TITLE']}}〝: status={{d_k['STATUS']}}-->
+        <a href="/en/art/{{d_k['NUM']}}_{{d_k['ID']}}.html">
+          <div class="art load lazyload" data-bg="/static/art/img/t/{{d_k['NUM']}}_{{d_k['ID']}}.jpg" title="{{d_k['NAME_E']}} : {{d_k['TITLE_E']}}"></div>
+          <div class="name">
+            <span>No.{{d_k['NUM']}}</span>
+              <h3><strong>{{d_k['TITLE_E']}}</strong></h3>
+              {% if d_k['EDITION_E'] != "" %}{{d_k['EDITION_E']}}<br>{% endif %}
+              {{d_k['MEDIUM_E']}}<br>
+              <span class="pc">{{d_k['SIZE']}}</span></p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li>SEARCH RESULT</li>
+  </ul>
+
+  <div class="ttl flex">
+    <h1>
+      <span class="title eng">SEARCH RESULT</span>
+      <span class="desc">検索結果を表示しております。</span>
+    </h1>
+  </div>
+
+  <div id="yjserp-txt">
+    <script>
+     (function() {
+         var cx = '007092472329930389288:bgpd2dcu-9g';
+         var gcse = document.createElement('script');
+         gcse.type = 'text/javascript';
+         gcse.async = true;
+         gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+         var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(gcse, s);
+     })();
+    </script>
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div>
+</article>
+<!-- END CONTENTS -->
+
+{% endblock %}

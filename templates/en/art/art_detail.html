@@ -1,0 +1,135 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+{% autoescape False %}
+
+{% if apage == False %}
+  {% set pagepath = "/en/artists/" + "#" + d_ad['ID'] %}
+{% else %}
+  {% set pagepath = "/en/artists/" + d_ad['ID'] + "/page_" + apage + ".html" %}
+{% endif %}
+
+{% if d_ad['STATUS'] == "SO" or d_ad['STATUS'] == "NOT"  %}
+  {% set stock = "Sold Out" %}
+  {% set is_soldout = True %}
+{% elif d_ad['STATUS'] == "HOLD1" %}
+  {% set stock = "Recommended" %}
+{% elif d_ad['STATUS'] == "HOLD2" %}
+  {% set stock = "Available" %}
+{% elif d_ad['STATUS'] == "HOLD3" %}
+  {% set stock = "A little more" %}
+{% else %}
+  {% set stock = "Available" %}
+{% endif %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/en/artists/">ARTISTS</a></li>
+    <li><a href="{{pagepath}}">{{d_ad['NAME_E']}}</a></li>
+    <li>{{d_ad['TITLE_E']}}</li>
+  </ul>
+
+  <!-- THISFILE: {{d_ad['NUM']}}_{{d_ad['ID']}}.html -->
+  <!-- ARTISTSFILE: {{pagepath}}" -->
+
+  <div id="art-detail">
+    <div id="art-ttl" class="flex">
+      <a href="{{pagepath}}" class="prev">一覧へ</a>
+        <h1>
+          <span class="title">{{d_ad['TITLE_E']}}</span>
+          <span class="desc">{{d_ad['NAME_E']}}</span>
+        </h1>
+        <p>No.{{d_ad['NUM']}}</p>
+    </div>
+
+    <div id="art">
+      <ul id="art-img">
+        {% for i in range(d_ad['IMGNUM']) %}
+          {% if i == 0 %}
+            <li class="load lazyload" data-bg="/static/art/img/{{d_ad['NUM']}}_{{d_ad['ID']}}.jpg" title="{{d_ad['NAME_E']}} : {{d_ad['TITLE_E']}}"></li>
+          {% else %}
+            {% set imgnum = i + 1 %}
+            <li class="load lazyload" data-bg="/static/art/img/{{d_ad['NUM']}}_{{d_ad['ID']}}_{{imgnum}}.jpg" title="{{d_ad['NAME_E']}} : {{d_ad['TITLE_E']}}"></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <ul id="art-thumb">
+        {% for i in range(d_ad['IMGNUM']) %}
+          {% if i == 0 %}
+            <li class="load lazyload" data-bg="/static/art/img/t/{{d_ad['NUM']}}_{{d_ad['ID']}}.jpg" title="{{d_ad['NAME_E']}} : {{d_ad['TITLE_E']}}"></li>
+          {% else %}
+            {% set imgnum = i + 1 %}
+            <li class="load lazyload" data-bg="/static/art/img/t/{{d_ad['NUM']}}_{{d_ad['ID']}}_{{imgnum}}.jpg" title="{{d_ad['NAME_E']}} : {{d_ad['TITLE_E']}}"></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div id="desc">
+      {% if d_ad['LINF_E'] != "" %}
+        <h2 class="txt">{{d_ad['LINF_E']}}</h2>
+      {% endif %}
+
+      <div class="flex">
+        <dl class="spec">
+        {% if d_ad['YEAR'] != "" %}
+          <dt>Year</dt>
+          <dd>{{d_ad['YEAR']}}</dd>
+        {% endif %}
+        {% if d_ad['EDITION'] != "" %}
+          <dt>Edition</dt>
+          <dd>{{d_ad['EDITION']}}</dd>
+        {% endif %}
+        {% if d_ad['MEDIUM_E'] != "" %}
+          <dt>Medium</dt>
+          <dd>{{d_ad['MEDIUM_E']}}</dd>
+        {% endif %}
+        {% if d_ad['SIZE'] != "" %}
+          <dt>Size</dt>
+          <dd>{{d_ad['SIZE']}}</dd>
+        {% endif %}
+        {% if stock != "" %}
+            <dd>{{stock}}</dd>
+        {% endif %}
+        </dl>
+        <dl class="sns">
+          <dt>share</dt>
+          <dd>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) return;
+                 js = d.createElement(s); js.id = id;
+                 js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11&appId=209888906239844';
+                 fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));</script>
+            <a class="no-icon fb" href="javascript:void(0);" target="_blank">facebook</a>
+          </dd>
+          <dd>
+            <a class="no-icon tw" href="javascript:void(0);" target="_blank">twitter</a>
+          </dd>
+        </dl>
+      </div>
+
+      <!-- {{d_ad['STATUS']}} -->
+      <section class="fbtn">
+        {% if is_soldout == True %}
+          <a href="/contact/?artist={{d_ad['NAME']}}&title=No.{{d_ad['NUM']}} {{d_ad['TITLE']}}" id="soldout">
+            <p class="arrow">SOLD</p>
+            <p>この作品やそれに類する作品へのお問い合わせはこちら</p>
+          </a>
+        {% else %}
+            <a href="/contact/?artist={{d_ad['NAME']}}&title=No.{{d_ad['NUM']}} {{d_ad['TITLE']}}">
+              <p class="arrow">CONTACT</p>
+              <p>作品や展覧会へのお問い合わせはこちら</p>
+            </a>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

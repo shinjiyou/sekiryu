@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>福井 良之助</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">福井 良之助</span>
+        <span class="desc">RYONOSUKE FUKUI</span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+  {% include "include_loop.html" %}
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+<!--
+     <div id="common-contents" class="clearfix">
+     <div class="common-contents-inner clearfix">
+     <hr class="crossing_line">
+     <br>
+
+     <table summary="福井良之助紹介用TABLE1" width="90%" cellpadding="0" border="0">
+     <tr>
+     <td class="page_comment" style="padding: 0px 20px;">
+     &nbsp;&nbsp;福井良之助が雪景色や舞妓で知られる洋画家として名を馳せる以前、
+     1955年頃から約10年の限られた期間、集中して取り組んだのが謄写版による孔版です。
+     美校の鋳金部仕込みの手先の器用さと、
+     絵肌への徹底したこだわり、身近な事物を描きながらも、そこに設定された絶対的な距離感。
+     福井が着目した、通称「ガリ版」と呼ばれるこの技法は、
+     昔学校などで配布するプリントを先生が手を黒くしながら刷るのに使ったそれであり、
+     当時、美術の道具だてとしてはかえりみられることの少ないものでした。
+     <br>
+     </td>
+     <td class="page_comment" align="center">
+     <img src="siteimg/exhibit/r.fukui_photo_hand.jpg" width="270" alt="福井良之助 孔版">
+     <br>
+     </td>
+     </tr>
+     </table>
+
+     <table summary="福井良之助紹介用TABLE2" width="90%" cellpadding="0" border="0">
+     <tr>
+     <td class="page_comment" style="padding: 0px 20px;"  align="center">
+     <img src="art/300px/1754_r.fukui.jpg" width="210" alt="福井良之助 “凝固した愛”"><br>
+     <span style="line-height: 15px;">「凝固した愛」<br>1964年 ed.10</span>
+     <br>
+     </td>
+     <td class="page_comment">
+     &nbsp;&nbsp;意外なメディアの選択と、すぐれて自己流であり、その繊細さにおいて並々ならない原紙づくりの探求によって、
+     それそのものをまったく別物のメディアとして生まれ変わらさせてしまった離れ業。
+     孔版に向けられた若き日の福井の純粋なパワーこそが、いまでも作品に生々しく血を通わせています。
+     福井の制作態度とこの充実した期間は、
+     どの時代の作家にとっても普遍的なテーマを含んでいるところにますます興味がひかれます。
+     <br>
+     </td>
+     </tr>
+     </table>
+
+     <table summary="福井良之助紹介用TABLE3" width="90%" cellpadding="0" border="0">
+     <tr>
+     <td class="page_comment" style="padding: 0px 20px;">
+     &nbsp;&nbsp;特殊な製版方法ゆえ、5部から15部ほどしか刷ることができず、発表当時アメリカのコレクターに高く評価されたこともあり、
+     その多くは海外流出の道をたどりました。現在280を越える種類が確認されていますが、
+     2005年の福井良之助孔版画展（佐倉市立美術館・高崎市美術館・岩手県立美術館）にともなって図録が発行されるまで、
+     まとまった資料も乏しくほとんど散逸状態にありました。<br>
+     <br>
+     <br>
+     &nbsp;&nbsp;ギャラリー石榴ではそうした孔版画に加え、それ固有の絵肌と空気感を引き継ぐながれにある油彩作品を随時ご紹介していきます。
+     <br>
+
+     </td>
+     <td class="page_comment"  align="center">
+     <img src="art/300px/1916_r.fukui.jpg" alt="福井良之助 “少女”" width="90" height="216"><br>
+     <span style="line-height: 15px;">「少女」<br>1964年 ed.15</span>
+     <br>
+     </td>
+     </tr>
+     </table>
+
+     </div>
+     </div>
+   -->
+
+{% endautoescape %}
+{% endblock %}

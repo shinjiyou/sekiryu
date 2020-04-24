@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+ <article id="right">
+
+   <ul id="pkz">
+     <li><a href="/">TOP</a></li>
+     <li><a href="/artists/">ARTISTS</a></li>
+     <li>池田 満寿夫</li>
+   </ul>
+
+   <div class="ttl fixedsticky">
+     <div class="flex">
+       <h1>
+         <span class="title">池田 満寿夫</span>
+         <span class="desc">MASUO IKEDA</span>
+       </h1>
+       <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+     </div>
+   </div>
+
+   <div class="art-list-wrapper">
+   {% include "include_loop.html" %}
+   </div>
+
+   <!--
+        <div id="common-contents" class="clearfix">
+        <div class="common-contents-inner clearfix">
+
+        <hr class="crossing_line">
+        <br>
+
+        <table summary="池田満寿夫紹介用TABLE1" width="90%" cellpadding="0" border="0">
+        <tr>
+        <td class="page_comment" style="padding: 0px 20px;">
+        &nbsp;&nbsp;1960年代半ば頃までの10年間、版画家・池田満寿夫は銅版画の最もシンプルな技法・ドライポイントを使って多くの作品を制作しました。
+        それは作家が「線」に没頭した時期と重なります。<br>
+        <br>
+        &nbsp;&nbsp;直接に銅板へ線を刻んでいくドライポイントは、腐蝕の手間がかからず、即興性や無意識的なイメージを優先できる。そんなところに愛着をもった作家は、
+        アイデアのメモ的なデッサンを複数さしはさみ、半角刀を用いて、にじんだようにささくれ立った強い黒線を軽やかに刻みました。<br>
+        </td>
+        <td class="page_comment" align="center">
+        <img src="art/300px/kesyo_m.ikeda.jpg" alt="池田満寿夫 “化粧する女”" width="182" height="200"><br>
+        <span style="line-height: 15px;">「化粧する女」<br>1964年 ed.20</span>
+        </td>
+        </tr>
+        </table>
+        <br>
+
+        <table summary="池田満寿夫紹介用TABLE2" width="90%" cellpadding="0" border="0">
+        <tr>
+        <td class="page_comment" style="padding: 0px 20px;" align="center">
+        <img src="art/300px/romantic_m.ikeda.jpg" alt="池田満寿夫 “ロマンチックな風景”" width="182" height="200"><br>
+        <span style="ine-height: 15px;">「ロマンチックな風景」<br>1965年 ed.20</span>
+        </td>
+        <td class="page_comment"><span style="line-height: 40px;">「線的なものは必然的にユーモアに接近する」</span><br>
+        &nbsp;&nbsp;作家によるこの言葉は線表現の本質的な一面にふれたものです。なぜなら線は、とりもなおさず「意味」を従える線≒「文字」と隣りあったものだからです。やがて作家は色彩によってではなく、線によってのみ表現できる「ユーモア」という特殊な領域に接近していきます。<br>
+        &nbsp;&nbsp;この時代作られた多くの作品は、余白にアルファベットの単語が浮かび、動物や人間が物語の一場面を演じているかのような、洒脱な雰囲気を持ったものです。<br>
+        </td>
+        </tr>
+        </table>
+        <br>
+        <table summary="池田満寿夫紹介用TABLE3" width="90%" cellpadding="0" border="0">
+        <tr>
+        <td class="page_comment" style="padding: 0px 20px;">さらには青・赤・黄の３色を基調とした最小限ながらポップな色彩の世界に、これもまたポップアート的なスーツや靴などの日常的な品々をまぎれこませることでイマジネーションはますますふくらみ続けていきました。<br>
+        <br>
+        &nbsp;&nbsp;即興性と物語性。一見すると相反する両極を行ったり来たりしながら、豊かなイメージの群れを量産したこの時代。ギャラリー石榴では1960～70年代の初期ドライポイントを生みだした実り多き時期にスポットをあて、
+        作品を取りそろえご紹介しています。
+        </td>
+        <td class="page_comment"  align="center">
+        <img src="art/300px/2127_m.ikeda.jpg" alt="池田満寿夫 “女・動物たち”" width="155" height="200"><br>
+        <span style="line-height: 15px;">「女・動物たち」<br>1960年 ed.15</span>
+        </td>
+        </tr>
+        </table>
+        </div>
+        </div>
+      -->
+
+ </article>
+ <!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}

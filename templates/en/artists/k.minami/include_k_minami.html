@@ -1,0 +1,65 @@
+{% extends "en/base_e.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/en/artists/">ARTISTS</a></li>
+    <li>{{aname}}</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">{{aname}}</span>
+      </h1>
+      <!--<p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p>-->
+      <div class="flex" id="sort-wrap">
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">Search by the age of the work</span><span class="sp">By Age</span></a></p>
+          <ul>
+            <li><a href="/en/artists/k.minami/page_k_minami1.html">1950s</a></li>
+              <li><a href="/en/artists/k.minami/page_k_minami2.html">1960s</a></li>
+            <li><a href="/en/artists/k.minami/page_k_minami3.html">After the 1970s<br class="sp"> Other small items</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+
+    {% include "en/include_loop_e.html" %}
+
+      <ul class="pager">
+        {% if file_name=="page_k_minami1.html"  %}
+        <li class="disable"><a href="javascript:void();"><span class="prev"></span></a></li>
+        {% elif file_name=="page_k_minami2.html"  %}
+        <li class="able"><a href="/en/artists/k.minami/page_k_minami1.html"><span class="prev"></span></a></li>
+        {% else %}
+        <li class="able"><a href="/en/artists/k.minami/page_k_minami2.html"><span class="prev"></span></a></li>
+        {% endif %}
+        <li><a href="/en/artists/k.minami/page_k_minami1.html"><span>1</span></a></li>
+        <li><a href="/en/artists/k.minami/page_k_minami2.html"><span>2</span></a></li>
+        <li><a href="/en/artists/k.minami/page_k_minami3.html"><span>3</span></a></li>
+        {% if file_name=="page_k_minami1.html" %}
+        <li class="able"><a href="/en/artists/k.minami/page_k_minami2.html"><span class="next"></span></a></li>
+        {% elif file_name=="page_k_minami2.html" %}
+        <li class="able"><a href="/en/artists/k.minami/page_k_minami3.html"><span class="next"></span></a></li>
+        {% else %}
+        <li class="disable"><a href="javascript:void(0);"><span class="next"></span></a></li>
+        {% endif %}
+      </ul>
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+<!-- START BIOGRAPHY -->
+<!-- END BIOGRAPHY -->
+
+{% endautoescape %}
+{% endblock %}

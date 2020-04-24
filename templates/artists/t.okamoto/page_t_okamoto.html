@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>岡本 太郎</li>
+  </ul>
+
+  <div class="ttl fixedsticky">
+    <div class="flex">
+      <h1>
+        <span class="title">岡本 太郎</span>
+        <span class="desc">TARO OKAMOTO</span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+    </div>
+  </div>
+
+  <div class="art-list-wrapper">
+  {% include "include_loop.html" %}
+  </div>
+
+</article>
+<!-- END CONTENTS -->
+
+<!--<div id="common-contents" class="clearfix">
+     <div class="common-contents-inner clearfix">
+
+     <hr class="crossing_line">
+     <br>
+
+     <a href="./exhibit.html"><img src="./siteimg/exhibit/exhibit.info_taro_2011a.jpg" alt="眼と眼　岡本太郎の版画とグッズ" width="690" height="213"></a>
+     <br>
+
+     <table summary="写真説明用TABLE" width="720">
+     <tr>
+     <td class="page_picture_detail" align="left">【企画展】<br>
+     <a href="./exhibit.html">「眼と眼　岡本太郎の版画とグッズ」</a><br>
+     </td>
+     <td class="page_picture_detail" align="left">
+     &#9658;&nbsp;ギャラリー石榴  南青山Room<br>
+     &#9658;&nbsp;ギャラリー石榴  松本
+     </td>
+     <td class="page_picture_detail" align="left">
+     2011年6/18(土)-6/26(日）&nbsp;11:00am-7:00pm<br>
+     2011年7/2(土)-7/10(日）&nbsp;10:00am-6:30pm<br>
+     </td>
+     </tr>
+     </table>
+     </div>
+     </div>
+   -->
+
+{% endautoescape %}
+{% endblock %}

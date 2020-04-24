@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+{% autoescape False %}
+
+<!-- START CONTENTS -->
+<article id="right">
+  <ul id="pkz">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/artists/">ARTISTS</a></li>
+    <li>草間 彌生</li>
+  </ul>
+
+  <div class="ttl fixedsticky kusama">
+    <div class="flex">
+      <h1>
+        <span class="title">草間 彌生</span>
+        <span class="desc">YAYOI KUSAMA<i>版画　PRINT<!-- （<TMPL_VAR NAME=SEKIRYU_YKPRINT_GREP>） --></i></span>
+      </h1>
+      <!-- <p id="btn-bio"><a href="javascript:void(0);" class="arrow">BIOGRAPHY</a></p> -->
+      <div class="flex" id="sort-wrap">
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">カタログレゾネNo.から探す</span><span class="sp">カタログ</span></a></p>
+          <ul>
+            <li><a href="/artists/y.kusama_p/yk_print1.html">No.001 - No.032</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print2.html">No.033 - No.064</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print3.html">No.065 - No.096</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print4.html">No.097 - No.128</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print5.html">No.129 - No.160</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print6.html">No.161 - No.192</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print7.html">No.193 - No.224</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print8.html">No.225 - No.256</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print9.html">No.257 - No.288</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print10.html">No.289 - No.320</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print11.html">No.321 - No.352</a></li>
+            <li><a href="/artists/y.kusama_p/yk_print12.html">No.353 - No.402</a></li>
+          </ul>
+        </div>
+        <div class="sort">
+          <p><a href="javascript:void(0);"><span class="pc">作品名（モチーフ）から探す</span><span class="sp">作品名</span></a></p>
+          <ul>
+            <li><a href="/artists/y.kusama_g/grep_NETS.html">網</a></li>
+            <li><a href="/artists/y.kusama_g/grep_PUMPKIN.html">かぼちゃ</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FRUITS.html">果物</a></li>
+            <li><a href="/artists/y.kusama_g/grep_SHOES.html">靴</a></li>
+            <li><a href="/artists/y.kusama_g/grep_COFFEE.html">コーヒーカップ</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FISH.html">魚</a></li>
+            <li><a href="/artists/y.kusama_g/grep_BUTTERFLY.html">蝶々</a></li>
+            <li><a href="/artists/y.kusama_g/grep_FLOWER.html">花</a></li>
+            <li><a href="/artists/y.kusama_g/grep_GRAPE.html">ぶどう</a></li>
+            <li><a href="/artists/y.kusama_g/grep_HAT.html">帽子</a></li>
+            <li><a href="/artists/y.kusama_g/grep_DOTS.html">水玉</a></li>
+            <li><a href="/artists/y.kusama_g/grep_L-SQUASH.html">レモンスカッシュ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="txt">
+    <p>草間彌生の版画、およそ250種をそろえ、ご紹介しています。</p>
+    <p>This page shows about 250 prints by Yayoi Kusama across three styles (Screenprint, Lithograph and Copperplate print.)</p>
+  </div>
+
+  <ul class="flex art-list hanga">
+    {% for d_k in ld_k %}
+      <li class="{{d_k['STATUS']}}" id="no{{d_k['NUM']}}">
+        <!-- {{d_k['NUM']}} :「{{d_k['TITLE']}}」: status={{d_k['STATUS']}}-->
+        <a href="/art/{{d_k['NUM']}}_{{d_k['ID']}}.html">
+          <div class="art load lazyload" data-bg="/static/art/img/t/{{d_k['NUM']}}_{{d_k['ID']}}.jpg" title="{{d_k['NAME']}} : {{d_k['TITLE']}}"></div>
+          <div class="name">
+            <span>No.{{d_k['NUM']}}</span>
+              <h3><strong>{{d_k['TITLE']}}</strong></h3>
+              {% if d_k['EDITION'] != "" %}{{d_k['EDITION']}}<br>{% endif %}
+              {{d_k['MEDIUM']}}<br>
+              <span class="pc">{{d_k['SIZE']}}</span></p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</article>
+<!-- END CONTENTS -->
+
+{% endautoescape %}
+{% endblock %}
