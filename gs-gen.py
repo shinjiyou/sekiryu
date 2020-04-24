@@ -57,7 +57,7 @@ os.makedirs('artists/y.kusama_g', exist_ok=True)
 os.makedirs('en/artists/y.kusama_g', exist_ok=True)
 
 ###############################################################################
-## 在庫の辞書型リスト(xlxs→ld_zs)の作成
+## 作品の辞書型リスト(xlxs→ld_zs)を作成
 ##
 wb = xlrd.open_workbook('gs-table.xlsx')
 sheet = wb.sheet_by_name('zaiko')
@@ -113,6 +113,9 @@ def check_zaiko_param(zs):
 
 	return
 
+###############################################################################
+## 各ページ種別の共通処理
+##
 def arg_collection(lang):
 	ld_zs.sort(key=lambda x: x['HIRAGANA'])
 	ld_zs_b = [] #BIG対象 - 重複あり(専門作家以外)

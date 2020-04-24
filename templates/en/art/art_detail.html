@@ -35,7 +35,7 @@
 
   <div id="art-detail">
     <div id="art-ttl" class="flex">
-      <a href="{{pagepath}}" class="prev">一覧へ</a>
+      <a href="{{pagepath}}" class="prev">To List</a>
         <h1>
           <span class="title">{{d_ad['TITLE_E']}}</span>
           <span class="desc">{{d_ad['NAME_E']}}</span>
@@ -90,7 +90,8 @@
           <dd>{{d_ad['SIZE']}}</dd>
         {% endif %}
         {% if stock != "" %}
-            <dd>{{stock}}</dd>
+          <dt>Stock</dt>
+          <dd>{{stock}}</dd>
         {% endif %}
         </dl>
         <dl class="sns">
@@ -117,12 +118,12 @@
         {% if is_soldout == True %}
           <a href="/contact/?artist={{d_ad['NAME']}}&title=No.{{d_ad['NUM']}} {{d_ad['TITLE']}}" id="soldout">
             <p class="arrow">SOLD</p>
-            <p>この作品やそれに類する作品へのお問い合わせはこちら</p>
+            <p>Inquiries about works or exhibitions</p>
           </a>
         {% else %}
             <a href="/contact/?artist={{d_ad['NAME']}}&title=No.{{d_ad['NUM']}} {{d_ad['TITLE']}}">
               <p class="arrow">CONTACT</p>
-              <p>作品や展覧会へのお問い合わせはこちら</p>
+              <p>Inquiries about works or exhibitions</p>
             </a>
         {% endif %}
       </section>
