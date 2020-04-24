@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   button
+   ========================================================================== */
+
+@mixin arrow {
+  display:inline-block;
+  vertical-align:middle;
+  content:"";
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid $color-r;
+  border-right: 1px solid $color-r;
+  transform: rotate(45deg);
+}
+
+.arrow {
+  &:before {
+    @include arrow;
+    margin-right:12px;
+    margin-bottom:.25em;
+  }
+  @include mq-sp {
+    &:before {
+      margin-right:8px;
+      margin-bottom:.4em;
+    }
+  }
+}
+
+.prev {
+  &:before {
+    @include arrow;
+    transform: rotate(-135deg);
+    margin-right:12px;
+    margin-bottom:.25em;
+  }
+  @include mq-sp {
+    &:before {
+      margin-right:8px;
+      margin-bottom:.4em;
+    }
+  }
+}
+
+.down {
+  &:before {
+    @include arrow;
+    transform: rotate(135deg);
+    margin-right:12px;
+    margin-bottom:.5em;
+  }
+  @include mq-sp {
+    &:before {
+      margin-right:8px;
+      margin-bottom:.4em;
+    }
+  }
+}
+
+.up {
+  &:before {
+    @include arrow;
+    transform: rotate(-45deg);
+    margin-right:12px;
+    margin-bottom:0;
+  }
+  @include mq-sp {
+    &:before {
+      margin-right:8px;
+      margin-bottom:0;
+    }
+  }
+}
+
+.next {
+  &:after {
+    @include arrow;
+    margin-left:6px;
+    margin-bottom:.25em;
+  }
+  @include mq-sp {
+    &:before {
+      margin-left:8px;
+      margin-bottom:.4em;
+    }
+  }
+}
+
+a[target="_blank"]:before,
+a.icon-blank:before {
+  content:'';
+  display:inline-block;
+  margin:0 8px 4px 2px;
+  background:url(../img/blank.svg) no-repeat;
+  height:10px;
+  width:10px;
+  vertical-align: middle;
+  transform:none;
+  border:none;
+}
+
+a[href$=".pdf"]:before,
+.icon-pdf:before {
+  content:'';
+  display:inline-block;
+  margin:0 8px 4px 2px;
+  background:url(../img/file.svg) no-repeat;
+  height:10px;
+  width:10px;
+  vertical-align: middle;
+  transform:none;
+  border:none;
+}
+
+.no-icon {
+  &:before {
+    display:none !important;
+  }
+}
+
+
+.btn {
+  @include base-transition(all);
+  display:inline-block;
+  background:$color-bg;
+  border:1px solid $color-bg;
+  padding:8px 8px 8px 0;
+  @include col(min-width,30);
+  border-radius:6px;
+  @include fontsize(14);
+  text-align:center;
+  &:before {
+    @include arrow;
+    margin-right:12px;
+    margin-bottom:.3em;
+  }
+  &:hover {
+    background:#fff;
+    border:1px solid $color-line;
+  }
+}
+
+@include mq-sp {
+  .btn {
+    @include cols(min-width,40);
+    &.full {
+      text-align:center;
+      width:100%;
+    }
+  }
+}
+
+.fbtn {
+  margin:136px 0 0;
+  a {
+    @include flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center; // IE10
+    align-items: center;
+    border:1px solid $color-line;
+    //border-top:1px solid $color-base;
+    padding:32px 40px;
+    position:relative;
+    .arrow {
+      width:50%;
+      @include fontsize(20);
+      text-align:left;
+    }
+    p {
+      color:$color-base;
+      width:50%;
+      text-align:right;
+    }
+    &:after {
+      transition:$base-transition-easing2;
+      position:absolute;
+      left:0;
+      top:-1px;
+      content:'';
+      width:100%;
+      height:1px;
+      background:$color-r;
+      transform:scaleX(0);
+      transform-origin:right;
+    }
+    &:hover {
+      &:after {
+        transform:scaleX(1);
+        transform-origin:left;
+      }
+    }
+    &#soldout {
+      background-color:$color-bg;
+    }
+  }
+}
+
+@include mq-sp {
+  .fbtn {
+    margin:80px 0;
+    a {
+      display:block;
+      padding:20px 32px 24px;
+      .arrow {
+        width:100%;
+        @include fontsize(18);
+        &:before {
+          margin-bottom:.3em;
+        }
+      }
+      p {
+        @include fontsize(10);
+        width:100%;
+        text-align:left;
+      }
+    }
+  }
+}
+
+.sp-tel-linktext {
+  a {
+    border-bottom:1px solid $color-r;
+  }
+}

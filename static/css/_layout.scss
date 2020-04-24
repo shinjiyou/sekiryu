@@ -1,0 +1,986 @@
+@charset "UTF-8";
+@import "_settings/_mixin";
+
+/*------------------------------------------------------------------------------------ common */
+
+$easing:cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+@keyframes nav-act {
+  10% {
+    opacity:0;
+    left:30px;
+  }
+  100% {
+    opacity:1;
+    left:0;
+  };
+}
+
+#wrapper {
+  @include mq-sp {
+  }
+  @include mq-pc {
+  }
+  @include mq-pcl {
+    width:calc(100% - #{$pcl-margin} * 2);
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+@include mq-sp {
+  #wrapper {
+    &:after {
+      @include base-transition(opacity);
+      top:0;
+      left:0;
+      content:'';
+      opacity:0;
+      display:block;
+      position:fixed;
+      width:100%;
+      height:100vh;
+      background:rgba($color-base,.6);
+      visibility: hidden;
+      z-index:20001;
+    }
+    &.show {
+      &:after {
+        opacity:1;
+        visibility:visible;
+      }
+    }
+  }
+}
+
+.fixedsticky {
+  top:0;
+}
+
+.flex {
+  @include flex;
+  @include mq-sp {
+    display:block;
+  }
+}
+
+.wf-loading {
+  visibility: hidden;
+}
+
+.wf-active {
+  visibility: visible;
+}
+
+.load {
+	opacity:0;
+  @include base-transition(opacity);
+  transition-delay:.5s;
+}
+
+.lazyloaded {
+	opacity:1;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+img.img-ofi {
+  -o-object-fit: contain;
+  object-fit: contain;
+  object-position:center;
+  font-family: 'object-fit: contain;';
+  height: 100%;
+  width: 100%;
+}
+
+img.img-full {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  -o-object-fit:cover;
+  object-fit:cover;
+  object-position:center;
+  font-family: 'object-fit:cover;';
+}
+
+#left {
+  position:relative;
+  //background:#ff0000;
+  //
+  @include col(width,40);
+  @include col(padding-left,10);
+  padding-top:$pcl-margin + 1vw;
+  //
+  /*線ありバージョン
+  @include col(width,35);
+  @include col(padding-left,7);
+  @include col(margin-right,7);
+  padding-top:$pcl-margin + 1vw;
+  border-right:1px solid rgba($color-line,.5);
+  */
+  &:after {
+    /*
+    position:absolute;
+    top:0;
+    right:-1px;
+    content:'';
+    display:block;
+    width:1px;
+    height:3vw;
+    background:$color-line;
+    */
+  }
+}
+
+#right {
+  //background:#ffff00;
+  //ほんとは120だけどstickyを稼働させるため
+  @include col(width,110);
+  padding-top:$pcl-margin + 1vw;
+}
+
+/* IE11とEdge のみ適用される */
+_:-ms-lang(x)::-ms-backdrop, #right {
+  @include col(width,110.1);
+}
+
+
+/* スマホ */
+
+@include mq-sp {
+  #left {
+    //background:#ff0000;
+    @include cols(width,60);
+    padding-left:0;
+    position:fixed;
+    z-index:20000;
+    background:#fff;
+    top:0;
+    padding-top:0;
+  }
+  #right {
+    @include cols(margin,$var:("0 + 100px",3,0,3));
+    @include cols(width,54);
+    //background:#ffff00;
+    padding-top:0;
+  }
+}
+
+.pager {
+  margin:80px 40px 0;
+  text-align:center;
+  li {
+    display:inline;
+    margin:0 2px;
+    a {
+      @include fontsize(16);
+      display:inline-block;
+      width:40px;
+      height:40px;
+      text-align:center;
+      border:1px solid #fff;
+      span {
+        @include vc;
+      }
+      &:hover {
+        color:$color-base;
+        border:1px solid rgba($color-base,.8);
+      }
+      .prev {
+        &:before {
+          margin-right:-3px;
+          margin-bottom:.2em;
+        }
+      }
+      .next {
+        &:after {
+          margin-left:-4px;
+          margin-bottom:.2em;
+        }
+      }
+    }
+    &.active,
+    &.activeParent {
+      a {
+        border:1px solid rgba($color-base,.8);
+      }
+    }
+    &.able,
+    &.disable {
+      margin:0 24px;
+      a:hover {
+        border:1px solid $color-r;
+      }
+    }
+    &.disable {
+      pointer-events:none;
+      :before,
+      :after {
+        border-color:rgba($color-base,.2);
+      }
+    }
+  }
+}
+
+.change-vp {
+  .pc {
+    margin:8vw 48px 0;
+    a {
+      border-radius:16px;
+      text-align:center;
+      width:100%;
+      @include fontsize(52);
+      &:before {
+        width: 20px;
+        height: 20px;
+        border-top-width:4px;
+        border-right-width:4px;
+        margin-right:32px;
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  .pager {
+    margin:160px 0 0;
+    position:relative;
+    li {
+      &:first-child {
+        position:absolute;
+        top:-96px;
+        left:0;
+        margin:0;
+        a {
+          display:block;
+          @include cols(width,27);
+          height:64px;
+          border-right:none;
+        }
+      }
+      &:last-child {
+        position:absolute;
+        top:-96px;
+        right:0;
+        margin:0;
+        display:block;
+        a {
+          display:block;
+          @include cols(width,27);
+          height:64px;
+        }
+      }
+      &.disable {
+        a {
+          border-color:rgba($color-line,.5);
+        }
+      }
+      &.able {
+        a {
+          border-color:$color-line;
+        }
+      }
+    }
+  }
+}
+
+.art-info {
+  text-align:center;
+  @include fontsize(11);
+  dt {
+    color:$color-base;
+    display:inline-block;
+    &:after {
+      content:'　';
+    }
+  }
+  dd {
+    display:inline-block;
+    color:rgba($color-base,.6);
+    &:not(:last-child) {
+      &:after {
+        content:', ';
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  .art-info {
+    letter-spacing:$ls-normal;
+    @include fontsize(10);
+  }
+}
+
+
+
+/*------------------------------------------------------------------------------------ left */
+
+#fixed-nav {
+  top:$pcl-margin + 1vw;
+}
+
+#logo {
+  h1,p {
+    a {
+      display:block;
+      @include hide-text;
+      background:url(../img/logo.svg) no-repeat center;
+      background-size:100% auto;
+      width:170px;
+      height:80px;
+    }
+  }
+}
+
+/*ナビの表示非表示*/
+
+#artists,#detail {
+  #artists-nav-child {
+    display:block;
+    >li {
+      a {
+        margin-bottom:5px;
+      }
+      span {
+        @include chotai;
+      }
+      &:last-child {
+        @include fontsize(14);
+        &.activeParent {
+          a {
+            color:$color-base;
+            &:hover {
+              color:$color-r;
+            }
+          }
+        }
+      }
+    }
+    strong + ul {
+      margin-top:4px;
+      margin-left:14px;
+      li {
+      }
+    }
+  }
+}
+
+#past,#exhibitions {
+  #past-nav-child {
+    display:block;
+    li {
+      @include fontsize(14);
+      &.activeParent {
+        a {
+          color:$color-base;
+          &:hover {
+            color:$color-r;
+          }
+        }
+      }
+    }
+  }
+}
+
+#contact {
+  #contact-nav-child {
+    display:block;
+  }
+}
+
+#artists-nav-top {
+  color:$color-base !important;
+  &:hover {
+    color:$color-r !important;
+  }
+}
+
+#nav {
+  display:block;
+  margin-top:40px;
+  ul {
+    li {
+      margin-top:4px;
+      @include fontsize(15);
+      position:relative;
+      &:nth-child(2) {
+        letter-spacing:0.05em;
+      }
+      &.active,
+      &.activeParent {
+        > a {
+          color:$color-r;
+          &:before {
+            @include arrow;
+            position:absolute;
+            top:9px;
+            left:-16px;
+          }
+        }
+      }
+      #kusama-nav-child {
+        margin-bottom:6px;
+        li {
+          @include fontsize(14);
+          a {
+            margin-bottom:0;
+          }
+        }
+      }
+      .nav-child {
+        display:none;
+        margin:8px 0 24px;
+        &:hover {
+          li {
+            strong,a {
+              opacity:.32;
+            }
+          }
+        }
+        li {
+          margin-top:0;
+          font-weight:$fw-normal;
+          @include fontsize(12);
+          a {
+            display:inline-block;
+            &.active {
+              color:$color-r !important;
+            }
+            &:hover {
+              opacity:1;
+            }
+            span {
+              display:block;
+            }
+            &:before {
+              display:none;
+            }
+          }
+          strong {
+            @include base-transition(all);
+            display:block;
+            font-weight:$fw-normal;
+            @include fontsize(12);
+            span {
+              display:block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#search {
+  margin-top:88px;
+  @include col(margin-right,10);
+  position:relative;
+  &:after {
+    display:block;
+    content:'';
+    background:#808080;
+    width:100%;
+    height:1px;
+    position:relative;
+    bottom:-4px;
+  }
+  #search-txt {
+    letter-spacing:$ls-normal;
+    outline: none;
+    margin:0;
+    padding:5px 24px 5px 0;
+    @include fontsize(13);
+    font-family:$mincho;
+    width:100%;
+    border:none;
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    }
+  }
+  #search-btn {
+    position:absolute;
+    top:6px;
+    right:0;
+    width:16px;
+    height:16px;
+  }
+}
+
+.gsc-control-cse {
+  padding:0 !important;
+  .gs-result {
+    .gs-title {
+      height:auto;
+      .gs-title {
+        height:auto;
+        font-weight:$fw-regular;
+        @include fontsize(15);
+      }
+    }
+  }
+}
+
+.gs-title,
+.gsc-url-top,
+.gsc-table-result {
+  font-family:$mincho !important;
+  letter-spacing:$ls-normal;
+  font-weight:$fw-normal;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-feature-settings: 'palt' 1;
+  font-feature-settings: 'palt' 1;
+  @include font-smoothing;
+}
+
+
+#utility {
+  margin-top:40px;
+  li {
+    @include fontsize(12);
+    margin-top:4px;
+    position:relative;
+    &.active,
+    &.activeParent {
+      a {
+        color:$color-r;
+      }
+    }
+  }
+}
+
+#sns-link {
+  @include flex;
+  @include col(margin-top,3);
+  a {
+    @include col(margin-right,1.4);
+    display:block;
+    @include hide-text;
+    background-size:100% auto;
+    width:20px;
+    height:20px;
+    opacity:.9;
+    &:before {
+      display:none;
+    }
+    &:hover {
+      opacity:.5;
+    }
+  }
+  #instagram {
+    background:url(../img/instagram.svg) no-repeat center;
+  }
+  #facebook {
+    background:url(../img/facebook.svg) no-repeat center;
+  }
+}
+
+/* スマホ */
+
+@include mq-sp {
+  #fixed-nav {
+    top:0;
+    @include flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center; // IE10
+    align-items: center;
+    @include cols(padding,$var:("0 + 24px",3,"0 + 24px",3));
+    @include cols(width,60);
+  }
+  #logo {
+    z-index:10003;
+    &.action {
+      opacity:0;
+    }
+    h1,p {
+      a {
+        width:120px;
+        height:53px;
+      }
+    }
+  }
+  #nav {
+    display:none;
+    z-index:10001;
+    margin:0;
+    position:fixed;
+    height:100vh;
+    width:100vw;
+    top:0;
+    left:0;
+    background:#fff;
+    ul {
+      @include vhc;
+      padding-left:40px;
+      padding-bottom:40px;
+      li {
+        position:relative;
+        margin:6px 0;
+        opacity:0;
+        @include fontsize(20);
+        a {
+          &:before {
+            left:-20px !important;
+            top:13px !important;
+          }
+        }
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
+          margin:0;
+          a {
+            @include fontsize(13);
+          }
+        }
+        &:nth-last-child(2) {
+          margin-top:40px;
+        }
+        .nav-child {
+          display:none !important;
+        }
+      }
+    }
+    .action {
+      @for $i from 1 through 8 {
+        >:nth-child(#{$i}) {
+          animation:nav-act .7s $easing #{$i / 16}s forwards;
+        }
+      }
+    }
+  }
+  #search {
+    display:none;
+    margin-top:30px;
+    width:68%;
+    position:absolute;
+    z-index:10005;
+    top:0;
+    &:after {
+      display:block;
+      content:'';
+      background:$color-base;
+      width:100%;
+      height:1px;
+      position:relative;
+      bottom:0;
+    }
+    #search-txt {
+      letter-spacing:$ls-normal;
+      outline: none;
+      margin:0;
+      padding:5px 24px 5px 0;
+      @include fontsize(16);
+      font-family:$mincho;
+      width:100%;
+      border:none;
+    }
+    #search-btn {
+      display:none;
+    }
+  }
+  #utility {
+    display:none;
+  }
+  #sp-nav {
+    flex:1;
+    height:20px;
+    #sp-menu {
+      z-index:10004;
+      position:absolute;
+      @include cols(right,3);
+      width:22px;
+      height:17px;
+      &.action {
+        span {
+          &:nth-child(1) {
+            transform-origin:center;
+            transform:translate(0,8px) rotate(45deg);
+          }
+          &:nth-child(2) {
+            opacity:0;
+          }
+          &:nth-child(3) {
+            transform-origin:center;
+            transform:translate(0,-8px) rotate(-45deg);
+          }
+        }
+      }
+      span {
+        position:absolute;
+        width:22px;
+        height:1px;
+        background:#000;
+        display:block;
+        &:nth-child(1) {
+          @include base-transition(transform);
+          top:0;
+        }
+        &:nth-child(2) {
+          @include base-transition(transform);
+          top:8px;
+        }
+        &:nth-child(3) {
+          @include base-transition(transform);
+          bottom:0;
+        }
+      }
+    }
+    #search-icon {
+      z-index:10002;
+      position:absolute;
+      @include cols(right,10);
+      margin-top: -4px;
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ right */
+
+#pkz {
+  @include flex;
+  justify-content: flex-end;
+  li {
+    color:rgba($color-base,.6);
+    padding-right:18px;
+    a {
+      color:rgba($color-base,.6);
+      &:hover {
+        color:$color-base;
+      }
+    }
+    &:after {
+      display:inline-block;
+      vertical-align:middle;
+      content:"";
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid rgba($color-base,.6);
+      border-right: 1px solid rgba($color-base,.6);
+      transform: rotate(45deg);
+      margin-left:12px;
+      margin-bottom:.275em;
+    }
+    &:last-child {
+      padding-right:0;
+      &:after {
+        display:none;
+      }
+    }
+  }
+}
+
+/* スマホ */
+
+@include mq-sp {
+  #pkz {
+    justify-content: flex-end;
+    li {
+      @include fontsize(10);
+      &:after {
+        width: 4px;
+        height: 4px;
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ footer */
+
+footer {
+  margin:136px 0 $pcl-margin + 3vw;
+  #footer-inner {
+    @include col(margin,$var:(0,1,0,1));
+    border-top:1px solid $color-line;
+    #dealer {
+      @include col(padding,$var:(5,0,0,9));
+      flex:1;
+      img {
+        width:160px;
+      }
+    }
+    #address {
+      @include col(width,35);
+      dl {
+        @include col(margin-top,1);
+        dt {
+          @include col(margin-top,5);
+        }
+      }
+    }
+    #sitemap {
+      @include col(margin,$var:(1,0,1,0));
+      padding-left:40px;
+      @include col(width,35);
+      border-left:1px solid $color-line;
+      dl {
+        @include col(padding,$var:(4,0,4,0));
+        dt,dd {
+          margin-bottom:12px;
+          a {
+            @include fontsize(14);
+          }
+        }
+        dt {
+          &:last-child {
+            margin-bottom:0;
+          }
+        }
+        dd {
+          @include col(margin-top,-.1);
+          text-indent:2em;
+        }
+      }
+    }
+    #copyright {
+      @include col(margin,$var:(-8,0,0,9));
+    }
+  }
+}
+
+/* スマホ */
+
+@include mq-sp {
+  footer {
+    @include cols(margin,$var:("0 + 80px",1,"0 + 120px",1));
+    #footer-inner {
+      @include cols(padding,$var:(0,2,0,2));
+      margin:0;
+      #dealer {
+        position:relative;
+        margin-top:64px;
+        img {
+          width:120px;
+        }
+        #sns-link {
+          position:absolute;
+          top:8px;
+          right:0;
+          a {
+            @include cols(margin-left,2);
+          }
+        }
+      }
+      #address {
+        margin-top:32px;
+        width:100%;
+        dt {
+          @include cols(margin-top,2);
+        }
+      }
+      #sitemap {
+        display:none;
+      }
+      #copyright {
+        margin-top:32px;
+        margin-left:0;
+        margin-bottom:32px;
+        @include fontsize(10);
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ artist-nav */
+
+#artists-nav {
+  position:fixed;
+  left:0;
+  bottom:0;
+  z-index:20002;
+  background:#fff;
+  @include cols(width,60);
+  #artists-nav-inner {
+    @include cols(margin,$var:(0,1,0,1));
+    border-top:1px solid $color-line;
+    ul {
+      display:none;
+      li {
+        @include cols(padding,$var:(0,2,0,2));
+        border-bottom:1px dotted $color-line;
+        &:last-child {
+          border-bottom:1px solid $color-line;
+        }
+        > a,strong {
+          display:block;
+          padding:12px 0;
+          color:$color-base;
+        }
+        span {
+          @include fontsize(14);
+          color:$color-base;
+          display:inline-block;
+          @include chotai;
+        }
+        strong {
+          @include fontsize(14);
+          font-weight:$fw-normal;
+          a {
+            float:right;
+            margin-left:18px;
+            padding-right:20px;
+            color:$color-base;
+            span {
+              @include fontsize(12);
+            }
+            &:after {
+              top:calc(50% - 4px);
+            }
+          }
+        }
+        a {
+          position:relative;
+          &:after {
+            @include arrow;
+            position:absolute;
+            right:8px;
+            top:calc(50% - 3px);
+            border-color:$color-r;
+          }
+        }
+      }
+    }
+    p {
+      padding:0 10px;
+      a {
+        position:relative;
+        display:block;
+        padding:12px 0;
+        color:$color-base;
+        text-align:right;
+        @include fontsize(15);
+        &:before {
+          left: 3px;
+          position: absolute;
+          top: 22px;
+          @include base-transition(all);
+          transform-origin:center;
+          transform:rotate(-45deg);
+        }
+      }
+      &.action {
+        a {
+          &:before {
+            top: 20px;
+            transform:rotate(135deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "_top";
+@import "_artists";
+@import "_artists-detail";
+@import "_exhibitions";
+@import "_exhibitions-past";
+@import "_about";
+@import "_others";
+@import "_contact";

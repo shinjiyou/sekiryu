@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------------ exhibitions */
+
+#exhibitions {
+  .ttl {
+    @include mq-pc {
+      margin-top:100px;
+    }
+    h1 {
+      flex:1;
+    }
+  }
+  #slider {
+    margin-bottom:96px;
+    .slick-list {
+      overflow:visible;
+    }
+    .exhibition {
+      @include base-transition(all);
+      position:relative;
+      img {
+        @include col(max-height,64);
+        margin: 0 auto;
+      }
+      .art-info {
+        margin-top:32px;
+        width:100%;
+      }
+    }
+    .slick-dots {
+      position:relative;
+      text-align:left;
+      width:auto;
+      bottom:auto;
+      left:0;
+      margin:32px auto 0;
+      li {
+        margin:0 16px 0 0;
+      }
+    }
+  }
+  #desc {
+    position:relative;
+    .flex {
+      &:last-child {
+        >dt,>dd {
+          margin-bottom:0;
+        }
+      }
+      >dt,>dd {
+        margin-bottom:96px;
+      }
+      >dt {
+        @include col(width,20);
+        @include fontsize(15);
+        margin-top:-5px;
+      }
+      >dd {
+        flex:1;
+        >p {
+          margin-bottom:16px;
+          @include col(margin-right,10);
+          @include fontsize(14);
+          a {
+            &:not(.arrow):not(.btn) {
+              border-bottom:1px solid $color-r;
+            }
+          }
+        }
+      }
+    }
+    .date {
+      -webkit-box-align: center;
+      -ms-flex-align: center; // IE10
+      align-items: center;
+      margin-top:-5px;
+      &:first-child {
+        margin-bottom:16px;
+      }
+      p {
+        line-height:1.4;
+      }
+      .place {
+        text-align:center;
+        border:1px solid rgba($color-base,.8);
+        display:block;
+        @include col(width,15);
+        padding:7px 0 4px;
+        letter-spacing:$ls-normal;
+        @include fontsize(12);
+      }
+      .y {
+        margin-left:16px;
+        @include fontsize(12);
+      }
+      .md {
+        margin-left:8px;
+        @include fontsize(22);
+      }
+      .w {
+        margin-left:8px;
+        width:40px;
+        @include fontsize(12);
+      }
+      .yaji {
+        margin-right:8px;
+        &:before {
+          display:inline-block;
+          content:"";
+          width:40px;
+          height:1px;
+          background:$color-base;
+          vertical-align:middle;
+        }
+        &:after {
+          @include arrow;
+          border-color:$color-base;
+          margin-left:-7px;
+        }
+      }
+      .time {
+        @include fontsize(20);
+      }
+      .text {
+        margin-left:8px;
+        @include fontsize(12);
+      }
+    }
+    .art-list-wrapper {
+      margin-top:-112px;
+      margin-bottom:0;
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #exhibitions {
+    #slider {
+      margin-top:40px;
+      margin-bottom:56px;
+      .exhibition {
+        .art-info {
+          margin-top:24px;
+          dt {
+            margin-bottom:4px;
+            display:block;
+          }
+        }
+      }
+      .slick-dots {
+        position:relative;
+        text-align:left;
+        width:auto;
+        bottom:auto;
+        left:0;
+        margin:32px auto 0;
+        li {
+          margin:0 16px 0 0;
+        }
+      }
+    }
+    #desc {
+      position:relative;
+      .flex {
+        >dt,>dd {
+          width:100%;
+        }
+        >dt {
+          margin-top:56px;
+          margin-bottom:0;
+        }
+        >dd {
+          margin-top:24px;
+          margin-bottom:0;
+          >p {
+            margin-right:0;
+            margin-bottom:16px;
+          }
+        }
+      }
+      .date {
+        @include flex;
+        position:relative;
+        .place {
+          padding: 3px 0;
+          position:absolute;
+          @include cols(width,15);
+          top:7px;
+          left:0;
+        }
+        .y {
+          @include cols(margin-left,17);
+        }
+        .md {
+          @include fontsize(19);
+        }
+        .w {
+          display:none;
+        }
+        .yaji {
+          margin-left:8px;
+          margin-right:0;
+        }
+        .time {
+          @include fontsize(12);
+          @include cols(margin-left,17);
+        }
+      }
+      .art-list-wrapper {
+        margin-top:-48px;
+        margin-bottom:0;
+      }
+    }
+  }
+}

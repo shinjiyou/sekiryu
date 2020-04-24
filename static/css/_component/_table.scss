@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+// テーブル（基本）
+/*
+  @include mq-sp{
+  table{
+  th{
+  @include fontsize(13);
+  }
+
+td{
+@include fontsize(12);
+}
+}
+}
+*/
+// 横スクロール
+
+.tbl-scroll-wrap {
+  overflow: hidden;
+}
+
+@include mq-sp{
+  .tbl-scroll-wrap {
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+      background: $color-bg;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: $color-line;
+    }
+    table {
+      width:200% !important;
+      margin-bottom:8px !important;
+    }
+  }
+}
+
+// テーブルスタイル01
+/*
+.tbl01{
+  width: 100%;
+
+  th{
+    background-color: $color-green2;
+    border-bottom: 1px solid #8ed4ac;
+    padding: 16px 24px;
+    text-align: left;
+    vertical-align: middle;
+    width: percentage(310px/920px);
+  }
+
+  td{
+    border-bottom: 1px dotted #ccc;
+    padding: 16px 24px;
+    vertical-align: middle;
+  }
+
+  tr{
+    &:first-child{
+      th{ border-top: 1px solid #8ed4ac; }
+      td{ border-top: 1px solid #ccc; }
+    }
+    &:last-child{
+      td{ border-bottom-style: solid; }
+    }
+  }
+}
+
+@include mq-sp{
+
+  .tbl01{
+    border: 1px solid $color-gray01;
+    border-top: none;
+    width: 100%;
+
+    th,td{
+      list-style-type: none;
+    }
+
+    th{
+      border-top: 1px solid #8ed4ac;
+      box-sizing: border-box;
+      display: list-item;
+      padding: 10px 16px;
+      width: 100%;
+    }
+
+    td{
+      border: none !important;
+      display: list-item;
+      padding: 16px;
+    }
+  }
+
+}
+*/

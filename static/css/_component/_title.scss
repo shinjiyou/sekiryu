@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   title
+   ========================================================================== */
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight:normal;
+}
+
+.ttl {
+  margin-top:96px;
+  margin-bottom:64px;
+  h1 {
+    .title {
+      margin-right:24px;
+      @include fontsize(28);
+      @include chotai;
+      display:inline-block;
+      line-height:1;
+      letter-spacing:$ls-normal;
+      &.eng {
+        margin-top:2px;
+        @include no-chotai;
+      }
+    }
+    .desc {
+      white-space:nowrap;
+      vertical-align: text-bottom;
+      letter-spacing:$ls-normal;
+      display:inline-block;
+      @include fontsize(13);
+      i {
+        font-style:normal;
+        position:relative;
+        padding-left:48px;
+        &:before {
+          position:absolute;
+          content:'';
+          display:block;
+          height:16px;
+          width:1px;
+          background:darken($color-line,10%);
+          transform:rotate(24deg);
+          top: 0px;
+          left: 24px;
+        }
+      }
+    }
+  }
+
+  /*exhibition*/
+
+  strong {
+    display:block;
+    font-weight:$fw-normal;
+    line-height:1;
+    @include fontsize(24);
+    @include col(width,30);
+  }
+  p {
+    flex:none;
+    line-height:1;
+    @include col(margin-right,3);
+  }
+}
+
+#exhibitions {
+  .ttl {
+    p {
+      margin-top:6px;
+    }
+  }
+}
+
+.yttl {
+  margin-top:98px;
+  margin-bottom:-24px;
+  p {
+    &.past {
+      @include fontsize(28);
+      span {
+        display:inline-block;
+        @include fontsize(20);
+        margin-right:8px;
+        &:after {
+          margin-left:8px;
+          display:inline-block;
+          content:"";
+          width:12px;
+          height:1px;
+          background:rgba($color-base,.6);
+          vertical-align:middle;
+          margin-bottom:6px;
+        }
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  .ttl {
+    margin-top:48px;
+    margin-bottom:24px;
+    h1 {
+      width:100%;
+      .title {
+        margin-right:12px;
+        @include fontsize(20);
+        &.eng {
+          margin-top:0;
+        }
+      }
+      .desc {
+        @include fontsize(10);
+      }
+    }
+
+    /*exhibition*/
+    p {
+      width:100%;
+      @include fontsize(12);
+      margin-bottom:16px;
+    }
+    strong {
+      display:none;
+    }
+
+  }
+  .yttl {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    p {
+      &.past {
+        @include fontsize(24);
+        span {
+          @include fontsize(16);
+        }
+      }
+    }
+  }
+}

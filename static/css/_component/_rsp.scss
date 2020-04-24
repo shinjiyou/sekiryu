@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   responsive
+   ========================================================================== */
+
+/* image
+   ========================================================================== */
+
+img {
+  vertical-align:bottom;
+  line-height: 1.0;
+  max-width:100%;
+  height: auto;
+}
+
+/* display
+   ========================================================================== */
+
+.block {
+  display:block;
+}
+
+.sp {
+  display:none;
+}
+
+.pc {
+  display:block;
+}
+
+.pc-inline {
+  display:inline;
+}
+
+@include mq-sp{
+
+  .sp {
+    display:block;
+  }
+
+  .pc {
+    display:none !important;
+  }
+
+  .pc-inline {
+    display:none !important;
+  }
+  /*
+  .pc-block {
+    display:inline;
+  }
+
+  .sp-block {
+    display:block;
+  }
+  */
+}

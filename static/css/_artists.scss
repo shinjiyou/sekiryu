@@ -1,0 +1,1155 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------------ collection */
+
+#short {
+  top:60px;
+  align-items: baseline;
+  #short-inner {
+    @include col(margin-top,5);
+    background:$color-bg;
+    @include col(width,6);
+    @include col(padding,$var:(4,2,4,2));
+    text-align:center;
+    border-radius:24px;
+  }
+}
+
+.collection#artists {
+  //コレクションの場合はspanを消して、h1を小さく
+  .ttl.mini {
+    .eng + span {
+      display:none;
+    }
+    .eng {
+      display:block !important;
+      @include fontsize(13);
+    }
+  }
+  #by-artists {
+    &.hover {
+      @include col(width,40);
+      ul {
+        overflow:hidden;
+        columns:2;
+        column-gap:0;
+        column-rule-style: dotted;
+        column-rule-width: 1px;
+        column-rule-color: darken($color-line,10%);
+        column-fill: auto;
+      }
+      p {
+        border-bottom:1px solid $color-line;
+      }
+    }
+  }
+  .art-list-wrapper {
+    position:relative;
+    margin-top:0;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify; // IE10
+    justify-content: space-between;
+    align-items: start;
+  }
+  .collect-list {
+    &:after {
+      //作家名のボーダー
+      position:absolute;
+      right:0;
+      bottom:0;
+      content:'';
+      @include col(width,36);
+      height:1px;
+      background:darken($color-line,15%);
+    }
+    li {
+      @include col(width,110);
+      position:relative;
+      &.skip,&:first-child {
+        &:after {
+          display:none;
+        }
+      }
+      &:before {
+        //作品名のボーダー
+        position:absolute;
+        @include col(left,37);
+        bottom:0;
+        content:'';
+        @include col(width,36);
+        height:1px;
+        background:$color-line;
+      }
+      &:after {
+        //作家名のボーダー
+        position:absolute;
+        right:0;
+        top:-1px;
+        content:'';
+        @include col(width,36);
+        height:1px;
+        background:darken($color-line,15%);
+      }
+      a {
+        @include col(padding,$var:(3.5,0,3.5,0));
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items:flex-start;
+        &:before {
+          //作品のボーダー
+          transition:$base-transition-easing2;
+          position:absolute;
+          left:0;
+          bottom:0;
+          content:'';
+          @include col(width,36);
+          height:1px;
+          background:$color-line;
+        }
+        &:after {
+          transition:$base-transition-easing2;
+          position:absolute;
+          left:0;
+          bottom:0;
+          content:'';
+          @include col(width,36);
+          height:1px;
+          background:$color-r;
+          transform:scaleX(0);
+          transform-origin:right;
+        }
+        &:hover {
+          &:after {
+            transform:scaleX(1);
+            transform-origin:left;
+          }
+        }
+      }
+      .art {
+        //background:#ff0000;
+        @include col(padding,$var:(0,1,0,1));
+        @include col(margin,$var:(0,4,0,4));
+        @include col(max-width,28);
+        @include col(max-height,28);
+      }
+      .name {
+        position:relative;
+        //background:#ffff00;
+        @include col(padding,$var:("0 + 16px",5,0,5));
+        @include col(width,37);
+        span {
+          @include fontsize(10);
+        }
+        h3 {
+          @include fontsize(16);
+          line-height:1.4;
+          margin-top:8px;
+          strong {
+            @include chotai;
+            font-weight:$fw-regular;
+          }
+        }
+        p {
+          margin-top:24px;
+          color:rgba($color-base,.6);
+          @include fontsize(10);
+        }
+      }
+      h2 {
+        //background:#00ffff;
+        order:4;
+        @include col(padding,$var:("0 + 24px",5,0,5));
+        align-self:flex-start;
+        text-align:left;
+        color:$color-base;
+        @include col(width,37);
+        @include chotai;
+        letter-spacing:$ls-large;
+        @include fontsize(20);
+        line-height:1;
+      }
+    }
+    .NEW,.SO {
+      .name {
+        &:after {
+          margin-top:16px;
+          display:block;
+          width:80px;
+          padding:6px 0;
+          text-align:center;
+          @include fontsize(12);
+          font-weight:$fw-bold;
+        }
+      }
+    }
+    .NEW {
+      .name {
+        &:after {
+          content:'NEW';
+          color:$color-r;
+          border:1px solid rgba($color-r,.4);
+        }
+      }
+    }
+    .SO {
+      .name {
+        &:after {
+          content:'SOLD';
+          color:$color-base;
+          border:1px solid $color-line;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  .collection#artists {
+    .ttl {
+      .eng {
+        @include fontsize(20);
+      }
+      &.mini {
+        .eng {
+          @include fontsize(20);
+        }
+      }
+    }
+    #by-artists {
+      &.hover {
+        @include cols(width,50);
+      }
+    }
+    .art-list-wrapper {
+    }
+    .collect-list {
+      &:after {
+        @include cols(width,17);
+      }
+      li {
+        @include cols(width,54);
+        &.skip,&:first-child {
+          &:after {
+            display:none;
+          }
+        }
+        &:before {
+          //作品名のボーダー
+          @include cols(left,19);
+          @include cols(width,17);
+        }
+        &:after {
+          //作家名のボーダー
+          position:absolute;
+          @include cols(width,17);
+        }
+        a {
+          @include cols(padding,$var:(3,0,3,0));
+          &:before {
+            //作品のボーダー
+            @include cols(width,18);
+          }
+          &:after {
+            @include cols(width,18);
+          }
+        }
+        h2 {
+          order:4;
+          @include cols(padding,$var:("0 + 9px",0,0,0));
+          @include cols(width,18);
+          @include fontsize(12);
+          text-align:right;
+        }
+        .art {
+          padding:0;
+          margin:0;
+          @include cols(max-width,18);
+          @include cols(max-height,18);
+        }
+        .name {
+          @include cols(padding,$var:(0,0,0,2));
+          @include cols(width,18);
+          span {
+            @include fontsize(10);
+          }
+          h3 {
+            @include fontsize(13);
+            margin-top:0px;
+          }
+          p {
+            margin-top:16px;
+          }
+        }
+      }
+      .NEW,.SO {
+        .name {
+          &:after {
+            margin-top:8px;
+            width:40px;
+            padding:2px 0 0;
+            @include fontsize(10);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------ artists */
+
+.art-list-wrapper {
+  margin-top:-60px;
+  @include mq-sp {
+    margin-top:-8px;
+  }
+}
+
+.art-list {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify; // IE10
+  justify-content: space-between;
+  overflow:hidden;
+  //pickupは今のところ普通のものと同じ
+  &.pickup {
+    li {
+      width:28.5%;
+    }
+  }
+  &.hanga {
+    li {
+      width:20.1%;
+    }
+  }
+  li {
+    width:28.5%;
+    margin-top:112px;
+    position:relative;
+    //flexの場合、あまりがあると位置がずれる
+    &.empty {
+      background:#fff;
+    }
+  }
+  a {
+    display:block;
+    border-bottom:1px solid $color-line;
+    height:100%;
+    width:100%;
+    &:after {
+      transition:$base-transition-easing2;
+      position:absolute;
+      left:0;
+      bottom:0;
+      content:'';
+      width:100%;
+      height:1px;
+      background:$color-r;
+      transform:scaleX(0);
+      transform-origin:right;
+    }
+    &:hover {
+      &:after {
+        transform:scaleX(1);
+        transform-origin:left;
+      }
+    }
+  }
+  .art {
+    background-position:center bottom;
+    background-size:contain;
+    background-repeat:no-repeat;
+  }
+  .name {
+    position:relative;
+    padding-right:0;
+    padding-top:20px;
+    span {
+      display:block;
+      padding-top:12px;
+      @include fontsize(10);
+    }
+    h3 {
+      margin-top:4px;
+      display:block;
+      @include chotai;
+      @include fontsize(16);
+      line-height:1.4;
+      strong {
+        font-weight:$fw-regular;
+      }
+    }
+    p {
+      color:rgba($color-base,.6);
+      padding:16px 0 32px;
+      @include fontsize(10);
+      span {
+        padding-top:0;
+      }
+    }
+  }
+  /*HOLD2は記載なしになり除外*/
+  .NEW,.SO,.NOT,.HOLD3 {
+    .name {
+      padding-right:72px !important;
+    }
+  }
+  .NEW,.SO,.NOT,.HOLD3 {
+    .name {
+      &:after {
+        position:absolute;
+        top:38px;
+        right:0;
+        display:block;
+        width:64px;
+        padding:4px 0 3px;
+        text-align:center;
+        @include fontsize(12);
+        font-weight:$fw-bold;
+      }
+    }
+  }
+  .NEW {
+    .name {
+      &:after {
+        content:'NEW';
+        color:$color-r;
+        border:1px solid rgba($color-r,.4);
+      }
+    }
+  }
+  .SO,.NOT {
+    .name {
+      &:after {
+        content:'SOLD';
+        color:$color-base;
+        border:1px solid $color-line;
+      }
+    }
+  }
+  .HOLD3 {
+    a {
+      pointer-events:none;
+    }
+    .name {
+      &:after {
+        //width:58px;
+        //padding:6px 0 6px 14px;
+        white-space: pre-wrap;
+        content:' ';
+        //color:$color-base;
+        border:1px solid $color-line;
+        background:url(../img/batsu.svg) no-repeat;
+        background-size:10px 10px;
+        background-position:center;
+      }
+    }
+  }
+  .NOT {
+    /*
+      a {
+      pointer-events:none;
+    }
+    .name {
+      &:after {
+        top:46px;
+        right:23px;
+        width:10px;
+        height:10px;
+        background:url(../img/batsu.svg) no-repeat;
+        background-size:10px 10px;
+      }
+    }
+  .HOLD2 {
+  .name {
+  &:after {
+  top:46px;
+  right:22px;
+  width:12px;
+  height:12px;
+    background:url(../img/maru.svg) no-repeat;
+    background-size:12px 12px;
+    }
+    }
+  }
+  .HOLD3 {
+  }
+   */
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  .art-list {
+    @include flex;
+    li {
+      width:45% !important;
+      margin-top:56px;
+      position:relative;
+      &.empty {
+        background:#fff;
+      }
+    }
+    .name {
+      position:relative;
+      padding-top:8px;
+      h3 {
+        margin-top:0;
+        @include fontsize(13);
+      }
+      p {
+        padding:16px 0 24px;
+        line-height:1.4;
+      }
+    }
+    /*HOLD2は記載なしになり除外*/
+    .NEW,.SO,.NOT,.HOLD3 {
+      .name {
+        padding-right:44px !important;
+      }
+    }
+    .NEW,.SO,.NOT,.HOLD3 {
+      .name {
+        &:after {
+          top:24px;
+          width:44px;
+          padding:2px 0 0;
+          @include fontsize(10);
+        }
+      }
+    }
+    .HOLD3 {
+      .name {
+        &:after {
+          //width:35px;
+          //padding:2px 0 2px 9px;
+          //background:url(../img/batsu.svg) no-repeat;
+          background-size:6px 6px;
+          background-position:center;
+        }
+      }
+    }
+/*
+    .NOT {
+      .name {
+        &:after {
+          top: 32px;
+          right: 17px;
+          width:6px;
+          height:6px;
+          background:url(../img/batsu.svg) no-repeat;
+          background-size:6px 6px;
+        }
+      }
+    }
+    .HOLD2 {
+      .name {
+        &:after {
+          top: 31px;
+          right: 16px;
+          width:8px;
+          height:8px;
+          background:url(../img/maru.svg) no-repeat;
+          background-size:8px 8px;
+        }
+      }
+    }
+    &.HOLD3 {
+    }
+*/
+  }
+}
+
+#artists {
+  position:relative;
+  #right {
+    display:block;
+    &.hide {
+      display:none;
+    }
+  }
+  .ttl {
+    padding:16px 0 14px;
+    margin-top:96px - 16px;
+    margin-bottom:64px - 15px;
+    top:-1px;
+    z-index:2;
+    background:#fff;
+    border-bottom:1px solid #fff;
+    .flex {
+      position:relative;
+      z-index:3;
+      -webkit-box-align: center;
+      -ms-flex-align: center; // IE10
+      align-items: center;
+    }
+    &.mini {
+      margin-top:0;
+      @include col(width,110);
+      border-bottom:1px solid $color-line;
+      h1 {
+        .title {
+          display:none;
+        }
+      }
+    }
+  }
+  #btn-bio {
+    padding-top:0;
+    line-height:1;
+    margin-left:40px;
+    display:inline-block;
+    &:before {
+      content: '';
+      height:26px;
+      width:1px;
+      display:inline-block;
+      background:$color-line;
+      margin-right:40px;
+      vertical-align:middle;
+    }
+    a {
+      &:before {
+        margin-bottom:.4em;
+      }
+    }
+  }
+  #sort-wrap {
+    margin-left:auto;
+  }
+  .sort {
+    margin-top:-6px;
+    position:relative;
+    &:before {
+      position:absolute;
+      z-index:1;
+      @include base-transition(all);
+      content:'';
+      display:block;
+      width:35px;
+      height:36px;
+      border:1px solid $color-line;
+      background:#fff;
+      top:2px;
+      left:0;
+    }
+    &.active {
+      p a {
+        font-weight:$fw-bold;
+      }
+      &:before {
+        border-bottom:1px solid $color-r;
+      }
+    }
+    p {
+      line-height:1.9;
+      position:relative;
+      z-index:3;
+      padding:10px 10px 4px 48px;
+      margin:0 1px;
+      border-bottom:1px solid transparent;
+      a {
+        color:$color-base;
+        display:block;
+        &:before {
+          @include base-transition(all);
+          content:'';
+          display:inline-block;
+          width:16px;
+          height:13px;
+          background:url(../img/sort.svg) no-repeat #fff center;
+          background-size:16px 13px;
+          position: absolute;
+          top: 14px;
+          left: 10px;
+        }
+      }
+    }
+    ul {
+      display:none;
+      width:100%;
+      position:absolute;
+      z-index:2;
+      top:2px;
+      background:#fff;
+      padding-top:36px;
+      border:1px solid $color-base;
+      li {
+        &.active,
+        &.activeParent {
+          a {
+            background:$color-bg;
+          }
+        }
+        a {
+          text-align:right;
+          @include base-transition(all);
+          display:inline-block;
+          width:100%;
+          padding:5px 10px 2px;
+          &:hover {
+            background:$color-bg;
+          }
+        }
+      }
+    }
+  }
+  .txt {
+    @include fontsize(13);
+    .style01 {
+      margin-top:16px;
+      dt,dd {
+        @include fontsize(13);
+        margin:0;
+        padding:0;
+      }
+      dt {
+        clear:none;
+        text-align:center;
+      }
+      #batsu {
+        @include hide-text;
+        position:relative;
+        width:56px;
+        margin:0 8px 0 24px;
+        &:before {
+          position:absolute;
+          top:0;
+          right:0;
+          display:block;
+          content:'';
+          width:56px;
+          padding:10px 0;
+          border:1px solid $color-line;
+          box-sizing:border-box;
+        }
+        &:after {
+          position:absolute;
+          top:5px;
+          right:22px;
+          display:block;
+          content:'';
+          width:10px;
+          height:10px;
+          background:url(../img/batsu.svg) no-repeat;
+          background-size:10px 10px;
+        }
+      }
+      #maru {
+        margin-right:8px;
+        @include hide-text;
+        position:relative;
+        width:56px;
+        &:before {
+          position:absolute;
+          top:0px;
+          right:0;
+          display:block;
+          content:'';
+          width:56px;
+          padding:10px 0;
+          border:1px solid $color-line;
+          box-sizing:border-box;
+        }
+        &:after {
+          position:absolute;
+          top:5px;
+          right:22px;
+          display:block;
+          content:'';
+          width:12px;
+          height:12px;
+          background:url(../img/maru.svg) no-repeat;
+          background-size:12px 12px;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #artists {
+    .ttl {
+      margin-top:48px;
+      margin-bottom:0;
+      padding-bottom:20px;
+      top:97px;
+      h1 {
+        .title {
+          @include fontsize(22);
+          margin-right:0;
+        }
+        .desc {
+          display:none;
+        }
+      }
+      &.mini {
+        h1 {
+          .title {
+            display:inline-block !important;
+            @include cols(width,54);
+          }
+        }
+      }
+    }
+    #btn-bio {
+      margin-left:-2px;
+      padding-top:0;
+      @include fontsize(14);
+      &:before {
+        display:none;
+      }
+    }
+    #sort-wrap {
+      @include flex;
+      -webkit-box-align: flex-start;
+      -ms-flex-align: flex-start; // IE10
+      align-items: flex-start;
+      position:absolute;
+      top:-12px;
+      right:0;
+    }
+    .sort {
+      margin-top:0;
+      position:relative;
+      &.hover {
+        @include cols(min-width,24);
+      }
+      p {
+        text-align:left;
+        //position:relative;
+        z-index:3;
+        padding:11px 10px 6px 44px;
+        margin:0 1px;
+        border-bottom:1px solid transparent;
+        span {
+          margin-top:0;
+          @include fontsize(13);
+        }
+        a {
+          color:$color-base;
+          display:block;
+          &:before {
+            @include base-transition(all);
+            content:'';
+            display:inline-block;
+            width:16px;
+            height:13px;
+            background:url(../img/sort.svg) no-repeat #fff center;
+            background-size:16px 13px;
+            margin-right:24px;
+          }
+        }
+      }
+      ul {
+        display:none;
+        width:100%;
+        position:absolute;
+        z-index:2;
+        top:2px;
+        //z-index:1;
+        background:#fff;
+        padding-top:36px;
+        border:1px solid $color-base;
+        li {
+          @include fontsize(12);
+          &.active,
+          &.activeParent {
+            a {
+              background:$color-bg;
+            }
+          }
+          a {
+            text-align:right;
+            @include base-transition(all);
+            padding:7px 10px 4px;
+            &:hover {
+              background:$color-bg;
+            }
+          }
+        }
+      }
+      &.hover {
+        p {
+          border-bottom:1px solid $color-line;
+        }
+      }
+    }
+    .txt {
+      p {
+        @include fontsize(12);
+      }
+      .style01 {
+        margin-top:16px;
+        dt,dd {
+          @include fontsize(12);
+        }
+        dt {
+          float:left;
+          display:inline-block;
+          clear:none;
+          text-align:center;
+        }
+        dd {
+          display:inline-block;
+          width:auto;
+          float:left;
+        }
+        #batsu {
+          @include hide-text;
+          position:relative;
+          width:40px;
+          margin:0 8px 0 24px;
+          &:before {
+            position:absolute;
+            top:0;
+            right:0;
+            display:block;
+            content:'';
+            width:40px;
+            padding:10px 0;
+            border:1px solid $color-line;
+            box-sizing:border-box;
+          }
+          &:after {
+            position:absolute;
+            top:7px;
+            right:17px;
+            display:block;
+            content:'';
+            width:6px;
+            height:6px;
+            background:url(../img/batsu.svg) no-repeat;
+            background-size:6px 6px;
+          }
+        }
+        #maru {
+          margin-right:8px;
+          @include hide-text;
+          position:relative;
+          width:40px;
+          &:before {
+            position:absolute;
+            top:0px;
+            right:0;
+            display:block;
+            content:'';
+            width:40px;
+            padding:10px 0;
+            border:1px solid $color-line;
+            box-sizing:border-box;
+          }
+          &:after {
+            position:absolute;
+            top:6px;
+            right:17px;
+            display:block;
+            content:'';
+            width:8px;
+            height:8px;
+            background:url(../img/maru.svg) no-repeat;
+            background-size:8px 8px;
+          }
+        }
+      }
+    }
+  }
+  .kusama {
+    .sort.active {
+      @include cols(max-width,18);
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        &:after {
+          z-index: 1;
+          position: absolute;
+          top: 0;
+          right: 1px;
+          content: '';
+          display: block;
+          width: 48px;
+          height:100%;
+          background:linear-gradient(to right, rgba(#fff, 0), #fff);
+        }
+      }
+    }
+    .sort.hover {
+      max-width:none;
+      p {
+        &:after {
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+
+
+#biography {
+  background:#fff;
+  position:absolute;
+  top:0;
+  @include col(left,40);
+  @include col(width,100);
+  @include col(padding-right,10);
+  opacity:0;
+  transition:opacity .4s $easing .15s;
+  pointer-events:none;
+  &.act {
+    pointer-events:all;
+    opacity:1;
+    #biography-wrap {
+      transition:transform .5s $easing .15s;
+      transform:none;
+    }
+  }
+  #biography-wrap {
+    transition:transform .5s $easing .5s;
+    transform:translateY(70px);
+    padding-top:calc(6vw + 14px);
+  }
+  #btn-close {
+    @include col(width,110);
+    text-align:right;
+    position:fixed;
+    top:calc(5vw + 122px);
+    a {
+      position:relative;
+      padding-left:24px;
+      display:inline-block;
+      &:before {
+        position:absolute;
+        content:'';
+        display:block;
+        height:24px;
+        width:1px;
+        background:$color-r;
+        transform:rotate(45deg);
+        top: 0;
+        left:0;
+      }
+      &:after {
+        position:absolute;
+        content:'';
+        display:block;
+        height:24px;
+        width:1px;
+        background:$color-r;
+        transform:rotate(-45deg);
+        top: 0;
+        left:0;
+      }
+    }
+  }
+  .bio-ttl {
+    padding-top:111px;
+    margin-bottom:64px;
+    strong {
+      display:block;
+      font-weight:$fw-normal;
+      line-height:1;
+      @include fontsize(20);
+    }
+    h1 {
+      margin-top:80px;
+      @include chotai;
+      @include fontsize(28);
+      line-height:1;
+    }
+    span {
+      display:block;
+      margin-top:4px;
+      @include fontsize(13);
+    }
+  }
+  p {
+    line-height:$base-line-height;
+    @include fontsize(14);
+    margin-bottom:16px;
+  }
+  h2 {
+    @include fontsize(20);
+    margin:80px 0 24px;
+    span {
+      @include fontsize(12);
+      margin-left:32px;
+    }
+  }
+  #ja,#global {
+    width:50%;
+    p {
+      margin-bottom:16px;
+    }
+    ul {
+      li {
+        margin-top:4px;
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  #biography {
+    @include cols(left,3);
+    @include cols(width,54);
+    @include cols(padding-right,10);
+    #biography-wrap {
+      padding-top:80px;
+    }
+    #btn-close {
+      @include cols(width,54);
+      top:50%;
+      @include fontsize(10);
+      a {
+        padding-top:24px;
+        padding-left:0;
+        &:before {
+          top:0;
+          left:18px;
+        }
+        &:after {
+          top:0;
+          left: 18px;
+        }
+      }
+    }
+    .bio-ttl {
+      padding-top:64px;
+      margin-bottom:32px;
+      strong {
+        display:block;
+        font-weight:$fw-normal;
+        line-height:1;
+        @include fontsize(18);
+      }
+      h1 {
+        margin-top:32px;
+        margin-bottom:4px;
+        @include chotai;
+        @include fontsize(20);
+        line-height:1;
+      }
+      span {
+        @include fontsize(10);
+      }
+    }
+    p {
+      text-align:justify;
+      br {
+        display:none;
+      }
+    }
+    #ja,#global {
+      width:100%;
+    }
+    #global {
+      margin:48px 0;
+    }
+  }
+}

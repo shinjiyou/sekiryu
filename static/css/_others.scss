@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------------ others */
+
+#others {
+  .list {
+    margin:80px 0 -32px;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start; // IE10
+    align-items: flex-start;
+    dt,dd {
+      margin-bottom:32px;
+    }
+    dt {
+      margin-top:-5px;
+      @include fontsize(15);
+      @include col(width,30);
+      h2 {
+        @include fontsize(20);
+        font-weight:$fw-bold;
+      }
+    }
+    dd {
+      @include col(width,80);
+      p {
+        margin-bottom:16px;
+        a:not(.btn) {
+          border-bottom: 1px solid $color-r;
+        }
+        &:last-child {
+          margin-bottom:0;
+        }
+        .btn {
+          margin-top:32px;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #others {
+    #right {
+      padding-left:0;
+    }
+    .list {
+      margin:80px 0 0;
+      display:block;
+      dt,dd {
+        margin-bottom:24px;
+      }
+      dt {
+        margin-top:56px;
+        @include fontsize(16);
+        margin-left:0;
+        width:100%;
+        h2 {
+          margin-top:-1vh;
+          @include fontsize(20);
+          font-weight:$fw-bold;
+        }
+      }
+      dd {
+        width:100%;
+        p {
+          margin-bottom:16px;
+        }
+        &:last-child {
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  #notfound {
+    > p {
+      margin:0 10px;
+    }
+    .fbtn {
+      width:100% !important;
+    }
+  }
+}

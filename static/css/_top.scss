@@ -1,0 +1,1333 @@
+@charset "UTF-8";
+
+/*------------------------------------------------------------------------------------ feature */
+
+@keyframes txt-act {
+  0% {
+    opacity:0;
+    transform:translateY(16px);
+  }
+  100% {
+    opacity:1;
+    transform:translateY(0);
+  };
+}
+
+#top {
+  #right {
+    padding-top:0;
+  }
+}
+
+#feature {
+  .photo,.artists,.exhibition {
+    @for $i from 2 through 10 {
+      >:nth-child(#{$i}) {
+        opacity:0;
+      }
+    }
+    &.action {
+      @for $i from 2 through 10 {
+        >:nth-child(#{$i}) {
+          animation:txt-act .8s $easing #{$i / 2}s forwards;
+        }
+      }
+    }
+  }
+  .slider{
+    visibility:hidden;
+  }
+  .slider.slick-initialized{
+    visibility:visible;
+  }
+}
+
+#feature {
+  .photo {
+    .art {
+      margin:0 auto;
+      text-align:center;
+      img {
+        display:inline;
+        @include col(width,110);
+        @include col(height,63);
+        @include base-transition(all);
+      }
+    }
+    .art-info {
+      margin-top:16px;
+      width:100%;
+    }
+    .ttl {
+      margin-top:40px;
+      margin-bottom:0;
+      color:$color-base;
+      h1 {
+        text-align:center;
+        .title {
+          @include fontsize(24);
+          width:auto;
+          margin-right:0;
+        }
+      }
+    }
+  }
+  .artists {
+    .art {
+      margin:$pcl-margin auto 0;
+      text-align:center;
+      img {
+        display:inline;
+        @include col(width,65);
+        @include col(height,55);
+        @include base-transition(all);
+      }
+    }
+    .art-info {
+      margin-top:16px;
+      width:100%;
+    }
+    .ttl {
+      margin-top:40px;
+      margin-bottom:0;
+      color:$color-base;
+      h1 {
+        text-align:center;
+        .title {
+          @include fontsize(24);
+          width:auto;
+          margin-right:0;
+        }
+      }
+    }
+  }
+  .exhibition {
+    .art {
+      margin:$pcl-margin auto 0;
+      text-align:center;
+      img {
+        display:inline;
+        @include col(width,110);
+        @include col(height,55);
+        @include base-transition(all);
+      }
+    }
+    .art-info {
+      display:none;
+      margin-top:16px;
+      width:100%;
+    }
+    .ttl {
+      margin-top:32px;
+      margin-bottom:0;
+      color:$color-base;
+      text-align:center;
+      /*
+      p {
+        flex:none;
+        @include col(margin-right,5);
+      }
+      */
+      h1 {
+        .title {
+          @include fontsize(24);
+          margin-right:0;
+        }
+      }
+    }
+    .date {
+      margin-top:24px;
+      -webkit-box-align: center;
+      -ms-flex-align: center; // IE10
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content:center;
+      justify-content:center;
+      p {
+        margin-right:0;
+        width:auto;
+        line-height:1.4;
+        /*
+        &:nth-child(5) {
+          margin-left:16px;
+        }
+        */
+      }
+      .place {
+        text-align:center;
+        border:1px solid rgba($color-base,.8);
+        display:block;
+        @include col(width,10);
+        padding:7px 0 4px;
+        letter-spacing:$ls-none;
+        @include fontsize(12);
+        margin-right:2px;
+      }
+      .y {
+        margin-left:6px;
+        @include fontsize(12);
+      }
+      .md {
+        margin-left:6px;
+        @include fontsize(16);
+      }
+      .yaji {
+        margin-left:4px;
+        &:before {
+          display:inline-block;
+          content:"";
+          width:12px;
+          height:1px;
+          background:rgba($color-base,.6);
+          vertical-align:middle;
+          margin-bottom:2px;
+        }
+        &:after {
+          @include arrow;
+          border-color:$color-base;
+          margin-left:-7px;
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+#feature {
+  #slider {
+    margin-bottom:0;
+    .slick-list {
+      padding-bottom:88px;
+    }
+    a:focus {
+      outline: none;
+    }
+    a:hover {
+    }
+  }
+  .slick-dots {
+    @include base-transition(opacity);
+    width:10px;
+    top:29%;
+    bottom:auto;
+    left:auto;
+    @include col(right,"-5 + 2px");
+    li {
+      display:block;
+      margin:12px 0;
+      width:10px;
+      height:10px;
+      left:0;
+      button {
+        width:10px;
+        height:10px;
+        padding:0;
+        &:before {
+          text-align:center;
+          width:8px;
+          height:8px;
+          opacity:1;
+          color:#fff;
+          border:1px solid darken($color-line,15%);
+          border-radius:50%;
+          @include fontsize(0);
+          @include base-transition(all);
+        }
+      }
+      &:hover {
+        button {
+          &:before {
+            background:$color-r;
+            border-color:$color-r !important;
+          }
+        }
+      }
+      &.slick-active {
+        button:before {
+          transform-origin:center;
+          border:none;
+        }
+      }
+    }
+  }
+}
+
+.circle {
+  z-index:2;
+  position:absolute;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px $color-r;
+  width: 10px;
+  height: 10px;
+  &.play {
+    .cover1 {
+      &:before {
+        animation: draw 2.9s linear forwards;
+      }
+    }
+    .cover2 {
+      &:before {
+        animation: draw 2.9s ease-out 2.9s forwards;
+      }
+    }
+  }
+}
+
+.cover1,
+.cover2 {
+  position: absolute;
+  overflow: hidden;
+  width: 50%;
+  height: 100%;
+  &:before {
+    position: absolute;
+    content: "";
+  }
+}
+.cover1 {
+  left: 50%;
+}
+
+.cover1:before {
+  width: 100%;
+  height: 200%;
+  background: #fff; /* 背景色に合わせて変更してください */
+  transform-origin: 0 25%;
+}
+.cover2:before {
+  left: 0%;
+  width: 110%;
+  height: 120%;
+  background: #fff; /* 背景色に合わせて変更してください */
+  transform-origin: 100% 40%;
+}
+
+/* 円を描くアニメーション */
+@keyframes draw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(180deg); }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #feature {
+    //共通
+    .photo,.artists,.exhibition {
+      .art {
+        margin-top:7vw;
+        img {
+          width:auto;
+          height:auto;
+        }
+      }
+      .art-info {
+        dt {
+          display:block;
+        }
+      }
+      .ttl {
+        margin-top:32px;
+        h1 {
+          .title {
+            @include fontsize(20);
+          }
+        }
+      }
+    }
+    .photo {
+      .art {
+        margin-top:0;
+        img {
+          @include cols(width,60);
+          @include cols(height,40);
+        }
+      }
+    }
+    .artists {
+      .art {
+        img {
+          @include cols(max-width,45);
+          @include cols(max-height,40);
+        }
+      }
+    }
+    .exhibition {
+      .art-info {
+        display:none;
+      }
+      .art {
+        img {
+          @include cols(max-width,54);
+          @include cols(max-height,40);
+        }
+      }
+      .ttl {
+        margin-top:16px;
+        p {
+          padding-top:0;
+          margin-top:0;
+          flex:none;
+          margin-right:0;
+          @include fontsize(10);
+          text-align:center;
+        }
+        h1 {
+          text-align:center;
+          margin-bottom:8px;
+          width:auto;
+        }
+      }
+      .date {
+        margin-top:0;
+        @include flex;
+        -webkit-box-pack:center;
+        -webkit-justify-content:center;
+        justify-content:center;
+        .place {
+          width:auto;
+          padding:3px 4px;
+          @include fontsize(11);
+        }
+        .y {
+          @include fontsize(10);
+        }
+        .md {
+          @include fontsize(12);
+        }
+        .yaji {
+          &:before {
+            width:8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  #feature {
+    @include cols(margin,$var:(0,-3,0,-3));
+    #slider {
+      .slick-list {
+        padding-bottom:32px;
+      }
+      a:focus {
+        outline: none;
+      }
+    }
+    .slick-dots {
+      top:auto;
+      bottom:0;
+      width:100%;
+      left:0;
+      right:0;
+      text-align:center;
+      li {
+        width:10px;
+        height:10px;
+        margin:0 8px;
+        display:inline-block;
+        button {
+          width:10px;
+          height:10px;
+          &:before {
+            width:8px;
+            height:8px;
+          }
+        }
+        &:hover {
+          button {
+            &:before {
+              background:none;
+              border-color:darken($color-line,15%) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ info */
+
+#info {
+  #info-inner {
+    @include flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify; // IE10
+    justify-content: space-between;
+    overflow:hidden;
+    h2 {
+      z-index:0;
+      position:relative;
+      @include fontsize(18);
+      margin-top:-1px;
+      line-height:1;
+      letter-spacing:.14em;
+      &:after {
+        position:absolute;
+        top:8px;
+        @include col(left,"3 + 153px");
+        width:100vw;
+        height:1px;
+        background:#808080;
+        content:"";
+        display:block;
+      }
+    }
+    dl {
+      @include col(padding,$var:(0,1,0,3));
+      position:relative;
+      z-index:1;
+      background:#fff;
+      margin-bottom:-16px;
+      dt,dd {
+        margin-bottom:16px;
+        letter-spacing:$ls-normal;
+      }
+      dt {
+        display:inline-block;
+        vertical-align:top;
+        float:left;
+        clear:left;
+        line-height:1.4;
+        span {
+          @include fontsize(14);
+          text-align:center;
+          display:inline-block;
+          margin:0 32px;
+          position:relative;
+          &:before {
+            position:absolute;
+            content:'';
+            display:block;
+            height:16px;
+            width:1px;
+            background:darken($color-line,10%);
+            transform:rotate(24deg);
+            top:0;
+            left:-14px;
+          }
+          &:after {
+            position:absolute;
+            content:'';
+            display:block;
+            height:16px;
+            width:1px;
+            background:darken($color-line,10%);
+            transform:rotate(24deg);
+            top:0;
+            right:-12px;
+          }
+        }
+      }
+      dd {
+        float:left;
+        display:inline-block;
+        line-height:1.4;
+        @include fontsize(14);
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #info {
+    margin-top:48px;
+    #info-inner {
+      display:block;
+      h2 {
+        width:100%;
+        @include fontsize(20);
+        &:after {
+          display:none;
+        }
+      }
+      dl {
+        padding:0;
+        margin-top:40px;
+        width:auto;
+        dt,dd {
+          @include cols(padding,$var:(0,4,0,4));
+        }
+        dt {
+          width:100%;
+          margin-bottom:8px;
+          @include fontsize(14);
+          span {
+            text-align:left;
+            margin-left:32px;
+            width:auto;
+            @include fontsize(12);
+            &:before,&:after {
+              height:14px;
+            }
+          }
+        }
+        dd {
+          @include fontsize(13);
+          width:100%;
+          margin-bottom:21px;
+          border-bottom:1px solid $color-line;
+          padding-bottom:21px;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ artists-collection */
+
+#artists-collection {
+  margin-top:136px;
+  position:relative;
+  .flex {
+    position:relative;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end; // IE10
+    align-items: flex-end;
+  }
+}
+
+@include mq-sp {
+  #artists-collection {
+    margin-top:80px;
+  }
+}
+
+/*------------------------------------------------------------------------------------ artists-img */
+
+#artists-img {
+  h2 {
+    position:absolute;
+    top:0;
+    right:0;
+    line-height:1;
+    @include fontsize(18);
+    letter-spacing:.14em;
+  }
+  ul {
+    @include col(width,56);
+    @include col(height,38);
+    @include base-transition(opacity);
+    position:relative;
+    li {
+      opacity:0;
+      transition:opacity .3s linear;
+      position:absolute;
+      @include col(width,56);
+      @include col(height,38);
+      background-repeat:no-repeat;
+      background-size:contain,auto 475px;
+      background-position:center;
+      &.active {
+        opacity:1;
+      }
+    }
+  }
+}
+
+@include mq-sp {
+  #artists-img {
+    h2 {
+      @include fontsize(20);
+      position:relative;
+      top:auto;
+      right:auto;
+    }
+    ul {
+      display:none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ artists-list */
+
+#artists-list {
+  @include col(width,54);
+  #pickup {
+    @include flex;
+    @include col(margin,$var:(0,0,3,3));
+    li {
+      @include col(margin-left,1);
+      @include col(width,15.9);
+      &.active {
+        a:after {
+          transform:scaleX(1);
+          transform-origin:left;
+        }
+      }
+      a {
+        background-color:#fff;
+        position:relative;
+        @include col(padding,$var:(3,0,.4,1));
+        border-bottom:1px solid $color-line;
+        display:block;
+        &:after {
+          z-index:9999;
+          transition:$base-transition-easing2;
+          position:absolute;
+          left:0;
+          bottom:-1px;
+          content:'';
+          width:100%;
+          height:1px;
+          background:$color-r;
+          transform:scaleX(0);
+          transform-origin:right;
+        }
+        &:hover {
+          &:after {
+            transform:scaleX(1);
+            transform-origin:left;
+          }
+        }
+        span {
+          display:block;
+          @include chotai;
+          @include fontsize(17);
+          font-weight:$fw-regular;
+          letter-spacing:$ls-large;
+        }
+        p {
+          display:none;
+        }
+      }
+      &.w {
+        position:relative;
+        @include flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center; // IE10
+        align-items: center;
+        @include col(width,52);
+        @include col(margin-left,1);
+        @include col(padding,$var:(3,0,.4,0));
+        border-bottom:1px solid $color-line;
+        &:after {
+          transition:$base-transition-easing2;
+          position:absolute;
+          left:0;
+          bottom:-1px;
+          content:'';
+          width:100%;
+          height:1px;
+          background:$color-r;
+          transform-origin:right;
+          transform:scaleX(0);
+        }
+        &.active {
+          &:after {
+            transform:scaleX(1);
+            transform-origin:left;
+          }
+        }
+        strong {
+          @include col(width,17);
+          @include col(padding-left,1);
+          @include fontsize(18);
+          font-weight:$fw-regular;
+          @include chotai;
+          letter-spacing:$ls-large;
+        }
+        a {
+          @include col(margin-left,1);
+          @include col(width,16);
+          border-bottom:none;
+          padding:0;
+          span {
+            letter-spacing:$ls-normal;
+            @include fontsize(13);
+            &:before {
+              margin-bottom:.3em;
+              margin-right:8px;
+            }
+          }
+          p {
+            display:none;
+          }
+          &:after {
+            display:none;
+          }
+          &:nth-child(2) {
+            @include col(width,16);
+            span {
+              //letter-spacing:normal;
+            }
+          }
+          &:last-child {
+            flex:1;
+            //@include col(width,15);
+          }
+        }
+      }
+    }
+  }
+}
+
+#artists-list {
+  #pickup.en {
+    li {
+      @include col(width,24.5);
+      &.w {
+        @include col(width,51);
+        strong {
+          @include col(width,25);
+          @include fontsize(15);
+          letter-spacing:$ls-normal;
+        }
+        a {
+          @include col(padding-top,0);
+          @include col(width,14);
+          &:last-child {
+            @include col(width,9);
+          }
+          span {
+            letter-spacing:$ls-none;
+          }
+        }
+      }
+      a {
+        @include col(padding-top,2);
+        span {
+          letter-spacing:$ls-normal;
+          @include fontsize(15);
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #artists-list {
+    @include cols(width,54);
+    border-bottom:1px solid $color-line;
+    #pickup {
+      margin:24px 0;
+      li {
+        width:100%;
+        padding:0;
+        margin:0;
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:top right;
+        a {
+          border-bottom:none;
+          @include cols(padding,$var:(16,2,4,0));
+          position:relative;
+          min-height:140px;
+          background-color:transparent;
+          background-repeat:no-repeat;
+          span {
+            @include fontsize(18);
+            &:before {
+              @include arrow;
+              margin-right:12px;
+              margin-bottom:.4em;
+            }
+          }
+          p {
+            display:block;
+            padding-left:20px;
+            @include fontsize(12);
+            color:rgba($color-base,.6);
+          }
+        }
+        &.w {
+          @include cols(width,54);
+          margin:0;
+          padding:0;
+          border-bottom:none;
+          strong {
+            position:absolute;
+            @include cols(top,7);
+            @include cols(left,3);
+            @include cols(width,"-3 + 100%");
+            padding-left:0;
+            @include fontsize(18);
+          }
+          a {
+            border-bottom:none;
+            @include cols(padding,$var:(16,2,4,0));
+            margin:0;
+            width:100% !important;
+            span {
+              text-align:left;
+              @include fontsize(15);
+              &:before {
+                margin-right: 12px;
+                margin-bottom: .45em;
+              }
+            }
+            p {
+              text-align:left;
+              display:block;
+              padding-left:20px;
+              @include fontsize(12);
+              color:rgba($color-base,.6);
+            }
+            &:nth-child(2) {
+              background-position:right -24px bottom 16px;
+              background-size:auto 74%;
+            }
+            &:last-child {
+              margin-top:-32px;
+              background-position:left -34px bottom 12px;
+              background-size:auto 78%;
+              span {
+                text-align:right;
+              }
+              p {
+                text-align:right;
+              }
+            }
+          }
+        }
+        &:nth-child(odd) {
+          a {
+            background-position:left -24px bottom 56px;
+          }
+          span {
+            text-align:right;
+          }
+          p {
+            text-align:right;
+          }
+        }
+        &:nth-child(2) {
+          a {
+            background-size: auto 78%;
+            background-position: right -28px bottom 32px;
+          }
+        }
+        &:nth-child(3) {
+          a {
+            background-size:auto 72%;
+            background-position:left -24px bottom 46px;
+          }
+        }
+        &:nth-child(4) {
+          a {
+            background-size:auto 77%;
+            background-position:right -14px bottom 56px;
+          }
+        }
+        &:nth-child(5) {
+          a {
+            background-position: left -60px bottom 20px;
+            background-size: auto 80%;
+          }
+        }
+        &:nth-child(6) {
+          a {
+            background-size: auto 78%;
+            background-position:right -47px bottom 17px;
+          }
+        }
+        &:nth-child(7) {
+          a {
+            @include cols(padding-top,12);
+            background-size: auto 84%;
+            background-position:left -36px bottom 4px;
+          }
+        }
+        &:nth-child(8) {
+          a {
+            background-size: auto 76%;
+            background-position:right -36px bottom 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ artists-name */
+
+#artist-name.flex {
+  @include col(margin-top,5);
+  width:100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center; // IE10
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  p {
+    line-height:1;
+    @include fontsize(46);
+    font-weight:$fw-normal;
+    letter-spacing:$ls-large;
+  }
+  span {
+    line-height:1.7;
+    flex:1;
+    margin-left:32px;
+    @include fontsize(14);
+    br {
+      display:none;
+    }
+  }
+}
+
+@include mq-sp {
+  #artist-name.flex {
+    display:none;
+  }
+}
+
+/*------------------------------------------------------------------------------------ other */
+
+#other {
+  position:relative;
+  margin-top:40px;
+  &:before {
+    display:block;
+    content:"";
+    width:100%;
+    height:1px;
+    background: radial-gradient(circle farthest-side, darken($color-line,10%), darken($color-line,10%) 50%, transparent 50%, transparent);
+    background-size:3px 1px;
+    margin-bottom:48px;
+  }
+  h2 {
+    line-height:1;
+    position:absolute;
+    top:58px;
+    right:0;
+    @include fontsize(18);
+    margin-top:-2px;
+    letter-spacing:.14em;
+  }
+  ul {
+    @include col(margin-right,30);
+    &:hover {
+      li {
+        &:after {
+          opacity:.32;
+        }
+        a {
+          opacity:.32;
+        }
+      }
+    }
+    li {
+      position:relative;
+      line-height:2.5;
+      display:inline-block;
+      margin-right:16px;
+      @include mq-pcl {
+        //@include fontsize(14);
+      }
+      &:not(:last-child):after {
+        @include base-transition(opacity);
+        position:absolute;
+        content:'';
+        display:block;
+        height:16px;
+        width:1px;
+        background:darken($color-line,10%);
+        transform:rotate(24deg);
+        top:6px;
+        right:-10px;
+      };
+      a {
+        &:hover {
+          opacity:1;
+        }
+        span {
+          @include chotai;
+          display:inline-block;
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #other {
+    position:relative;
+    margin-top:48px;
+    &:before {
+      display:none;
+    }
+    h2 {
+      position:relative;
+      top:auto;
+      right:auto;
+      @include fontsize(20);
+      margin-top:0;
+    }
+    ul {
+      margin-top:32px;
+      margin-right:0;
+      li {
+        @include fontsize(12);
+        line-height:2.4;
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------ exhi & about */
+
+#top {
+  #exhi {
+    margin-top:136px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    h2 {
+      line-height:1;
+      @include col(width,15);
+      @include fontsize(18);
+      margin-top:-2px;
+      letter-spacing:.14em;
+    }
+    #exhi-img {
+      @include col(margin-left,10);
+      //@include col(width,45);
+      flex:1;
+      a {
+        &:hover {
+        }
+      }
+      img {
+        height:auto;
+        object-position:top center;
+        @include col(max-width,45);
+        @include col(max-height,30);
+      }
+      .art-info {
+        margin-top:16px;
+      }
+    }
+    #exhi-text {
+      @include col(margin-left,10);
+      @include col(width,30);
+      p {
+        @include fontsize(12);
+      }
+      #exhi-ttl {
+        margin:16px 0 40px;
+        line-height:1.2;
+        @include chotai;
+        @include fontsize(22);
+        span {
+          margin-top:8px;
+          display:block;
+          @include fontsize(10);
+        }
+      }
+      .date {
+        -webkit-box-align: center;
+        -ms-flex-align: center; // IE10
+        align-items: center;
+        p {
+          line-height:1.4;
+          //4つ目まで
+          &:nth-child(-n + 4) {
+            margin-bottom:12px;
+          }
+        }
+        .place {
+          text-align:center;
+          border:1px solid rgba($color-base,.8);
+          display:block;
+          @include col(width,10);
+          padding:7px 0 4px;
+          letter-spacing:$ls-none;
+          @include fontsize(12);
+          margin-right:2px;
+        }
+        .y {
+          margin-left:6px;
+          @include fontsize(12);
+        }
+        .md {
+          margin-left:6px;
+          @include fontsize(16);
+        }
+        .yaji {
+          margin-left:4px;
+          &:before {
+            display:inline-block;
+            content:"";
+            width:12px;
+            height:1px;
+            background:rgba($color-base,.6);
+            vertical-align:middle;
+            margin-bottom:2px;
+          }
+          &:after {
+            @include arrow;
+            border-color:$color-base;
+            margin-left:-7px;
+            display:none;
+          }
+        }
+      }
+      .btn {
+        margin-top:32px
+      }
+    }
+  }
+
+  #about {
+    border-top:1px solid $color-line;
+    margin-top:56px;
+    padding-top:72px;
+    h2 {
+      line-height:1;
+      @include col(width,15);
+      @include fontsize(18);
+      margin-top:-2px;
+      letter-spacing:.14em;
+    }
+    #about-img {
+      @include col(margin-left,10);
+      flex:1;
+      //@include col(width,45);
+      a {
+        &:hover {
+        }
+      }
+      .flex {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify; // IE10
+        justify-content: space-between;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        p {
+          @include col(width,22);
+          color:rgba($color-base,.6);
+          @include fontsize(12);
+          img {
+            @include base-transition(opacity);
+            margin-bottom:16px;
+          }
+        }
+      }
+    }
+    #about-text {
+      @include col(margin-left,10);
+      @include col(width,30);
+      .btn {
+        margin-top:32px
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------スマホ */
+
+@include mq-sp {
+  #top {
+    #exhi {
+      margin-top:80px;
+      h2 {
+        @include fontsize(20);
+        margin-top:0;
+      }
+      #exhi-img {
+        @include cols(margin,$var:("0 + 40px",6,0,6));
+        @include cols(width,42);
+        text-align: center;
+        img {
+          max-height:none;
+          max-width:none;
+          displya:inline;
+        }
+        .art-info {
+          margin-top:24px;
+          dt {
+            display:block;
+            margin-bottom:4px;
+          }
+        }
+      }
+      #exhi-text {
+        margin-top:32px;
+        margin-left:0;
+        @include cols(width,54);
+        p {
+          text-align:center;
+          @include fontsize(10);
+          &:nth-child(5) {
+            margin-left:16px;
+          }
+        }
+        #exhi-ttl {
+          margin:12px 0 32px;
+          @include fontsize(20);
+          text-align:center;
+          span {
+            margin-top:4px;
+          }
+        }
+        .date {
+          @include flex;
+          -webkit-box-pack:center;
+          -webkit-justify-content:center;
+          justify-content:center;
+          p {
+            //4つ目まで
+            &:nth-child(-n + 4) {
+              margin-bottom:0;
+            }
+          }
+          .place {
+            width:auto;
+            padding:3px 4px;
+            @include fontsize(11);
+          }
+          .y {
+            @include fontsize(10);
+          }
+          .md {
+            @include fontsize(12);
+          }
+          .yaji {
+            &:before {
+              width:8px;
+            }
+          }
+        }
+      }
+    }
+    #about {
+      padding-top:56px;
+      h2 {
+        @include fontsize(20);
+        margin-top:0;
+      }
+      #about-img {
+        @include cols(margin,$var:("0 + 40px",6,0,6));
+        @include cols(width,42);
+        .flex {
+          @include flex;
+          -webkit-box-pack: justify;
+          p {
+            @include cols(width,20);
+          }
+        }
+      }
+      #about-text {
+        margin:24px auto 0;
+        @include cols(width,44);
+        p {
+          &:last-child {
+            text-align:center;
+          }
+        }
+      }
+    }
+  }
+}

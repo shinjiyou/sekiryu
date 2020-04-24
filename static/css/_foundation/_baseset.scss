@@ -1,0 +1,331 @@
+@charset "UTF-8";
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  color: $color-base;
+  font-size:62.5%;
+}
+
+body {
+  font-family:$mincho;
+  font-size:percentage( $base-font-size * 0.1 ) ;
+  letter-spacing:$ls-normal;
+  font-weight:$fw-normal;
+  line-height: $base-line-height;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-feature-settings: 'palt' 1;
+  font-feature-settings: 'palt' 1;
+  @include font-smoothing;
+}
+
+::selection {
+  color:#fff;
+  background: $color-r;
+}
+
+::-moz-selection {
+  color:#fff;
+  background: $color-r;
+}
+
+input::selection,
+textarea::selection {
+  color:#fff;
+}
+
+input::-moz-selection,
+textarea::-moz-selection {
+  color:#fff;
+}
+
+/* link
+   ========================================================================== */
+
+a {
+  color: $color-base;
+  text-decoration:none;
+  @include base-transition(all);
+}
+
+a:visited {
+  color: rgba($color-base,.8);
+  text-decoration: none;
+}
+
+a:hover {
+  color:$color-r;
+  text-decoration: none;
+}
+
+a:active {
+  color:lighten($color-r,20%);
+  text-decoration: none;
+}
+
+@include mq-sp {
+  a {
+    -webkit-tap-highlight-color: rgba($color-base, .2);
+  }
+  a:hover {
+    color: $color-base;
+  }
+  a:active {
+    color: lighten($color-base,7%);
+  }
+}
+
+/* image
+   ========================================================================== */
+
+img {
+  line-height: 1.0;
+  vertical-align: bottom;
+}
+
+table th img,
+table td img {
+  vertical-align :middle;
+}
+
+/* ClearFix
+   ========================================================================== */
+
+.clear{
+  clear: both;
+}
+
+.clearfix,
+.fbox,
+#contents,
+.item-wrap {
+  display: block;
+
+  &:after{
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+/* float
+   ========================================================================== */
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+ul.fbox li {
+  float: left;
+  display: inline;
+}
+
+/* padding
+   ========================================================================== */
+
+.pt0 { padding-top :0 !important; }
+.pb0 { padding-bottom: 0 !important; }
+
+/* form label
+   ========================================================================== */
+
+input,
+textarea,
+label {
+  vertical-align: middle;
+}
+
+/* position
+   ========================================================================== */
+
+.text-r {
+  text-align: right !important;
+}
+
+.text-c,
+table.text-c th,
+table.text-c td,
+table.th-c th {
+  text-align: center !important;
+}
+
+.text-l {
+  text-align: left !important;
+}
+
+/* column
+   ========================================================================== */
+
+$sp-margin:0vw;
+$pc-margin:0vw;
+$pcl-margin:5vw; //90vw
+$pc-c:160;
+$sp-c:60;
+
+@mixin col($property, $var:()) {
+  $len:length($var);
+  @if $len == 1 {
+    @include mq-pc {
+      #{$property}:calc((100vw - #{$pc-margin} * 2) / #{$pc-c} * #{$var});
+    }
+    @include mq-pcl {
+      #{$property}:calc((100vw - #{$pcl-margin} * 2) / #{$pc-c} * #{$var});
+    }
+  } @else {
+    @include mq-pc {
+      #{$property}:calc((100vw - #{$pc-margin} * 2) / #{$pc-c} * #{nth($var, 1)}) calc((100vw - #{$pc-margin} * 2) / #{$pc-c} * #{nth($var, 2)}) calc((100vw - #{$pc-margin} * 2) / #{$pc-c} * #{nth($var, 3)}) calc((100vw - #{$pc-margin} * 2) / #{$pc-c} * #{nth($var, 4)});
+    }
+    @include mq-pcl {
+      #{$property}:calc((100vw - #{$pcl-margin} * 2) / #{$pc-c} * #{nth($var, 1)}) calc((100vw - #{$pcl-margin} * 2) / #{$pc-c} * #{nth($var, 2)}) calc((100vw - #{$pcl-margin} * 2) / #{$pc-c} * #{nth($var, 3)}) calc((100vw - #{$pcl-margin} * 2) / #{$pc-c} * #{nth($var, 4)});
+    }
+  }
+}
+
+@mixin cols($property, $var:()) {
+  $len:length($var);
+  @if $len == 1 {
+    #{$property}:calc((100vw - #{$sp-margin} * 2) / #{$sp-c} * #{$var});
+  } @else {
+    #{$property}:calc((100vw - #{$sp-margin} * 2) / #{$sp-c} * #{nth($var, 1)}) calc((100vw - #{$sp-margin} * 2) / #{$sp-c} * #{nth($var, 2)}) calc((100vw - #{$sp-margin} * 2) / #{$sp-c} * #{nth($var, 3)}) calc((100vw - #{$sp-margin} * 2) / #{$sp-c} * #{nth($var, 4)});
+  }
+}
+
+@function coll($num) {
+  $w:(100vw - $pcl-margin * 2) / $pc-c * $num;
+  @return $w;
+}
+
+@function col($num) {
+  $w:(100vw - $pc-margin * 2) / $pc-c * $num;
+  @return $w;
+}
+
+@function cols($num) {
+  $w:(100vw - $sp-margin * 2) / $sp-c * $num;
+  @return $w;
+}
+
+// for-pc / col
+@include mq-pc {
+  @for $i from $pc-c through 1 {
+    .col#{$i} {
+      width:col($i);
+    }
+    .m#{$i} {
+      margin:col($i);
+    }
+    .ml#{$i} {
+      margin-left:col($i);
+    }
+    .mr#{$i} {
+      margin-right:col($i);
+    }
+    .mt#{$i} {
+      margin-top:col($i);
+    }
+    .mb#{$i} {
+      margin-bottom:col($i);
+    }
+    .p#{$i} {
+      padding:col($i);
+    }
+    .pl#{$i} {
+      padding-left:col($i);
+    }
+    .pr#{$i} {
+      padding-right:col($i);
+    }
+    .pt#{$i} {
+      padding-top:col($i);
+    }
+    .pb#{$i} {
+      padding-bottom:col($i);
+    }
+  }
+}
+
+// for-pcl / col
+@include mq-pcl {
+  @for $i from $pc-c through 1 {
+    .col#{$i} {
+      width:coll($i);
+    }
+    .m#{$i} {
+      margin:coll($i);
+    }
+    .ml#{$i} {
+      margin-left:coll($i);
+    }
+    .mr#{$i} {
+      margin-right:coll($i);
+    }
+    .mt#{$i} {
+      margin-top:coll($i);
+    }
+    .mb#{$i} {
+      margin-bottom:coll($i);
+    }
+    .p#{$i} {
+      padding:coll($i);
+    }
+    .pl#{$i} {
+      padding-left:coll($i);
+    }
+    .pr#{$i} {
+      padding-right:coll($i);
+    }
+    .pt#{$i} {
+      padding-top:coll($i);
+    }
+    .pb#{$i} {
+      padding-bottom:coll($i);
+    }
+  }
+}
+
+// for-sp / col
+@include mq-sp {
+  @for $i from $sp-c through 1 {
+    .col#{$i}s {
+      width:cols($i);
+    }
+    .m#{$i}s {
+      margin:cols($i);
+    }
+    .ml#{$i}s {
+      margin-left:cols($i);
+    }
+    .mr#{$i}s {
+      margin-right:cols($i);
+    }
+    .mt#{$i}s {
+      margin-top:cols($i);
+    }
+    .mb#{$i}s {
+      margin-bottom:cols($i);
+    }
+    .p#{$i}s {
+      padding:cols($i);
+    }
+    .pl#{$i}s {
+      padding-left:cols($i);
+    }
+    .pr#{$i}s {
+      padding-right:cols($i);
+    }
+    .pt#{$i}s {
+      padding-top:cols($i);
+    }
+    .pb#{$i}s {
+      padding-bottom:cols($i);
+    }
+  }
+}
