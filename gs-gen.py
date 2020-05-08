@@ -17,8 +17,6 @@ YKPRINT_MAX = 32
 
 L_SITEMAP = ('about', 'contact', 'search', 'site', 'privacy',
 	'404', 'exhibitions', 'exhibitions/past', 'artists', 'art')
-L_ARTIST_PAGE = ('y.kusama', 'k.funakoshi', 't.okamoto', 'm.ikeda', 'r.fukui',
-		   't.tatsuno', 'k.minami')
 D_YK_GREP = {
 	'PUMPKIN'	: 'かぼちゃ',
 	'FLOWER'	: '花',
@@ -47,9 +45,6 @@ for dir in L_SITEMAP:
 	os.makedirs(dir, exist_ok=True)
 	os.makedirs('en/' + dir, exist_ok=True)
 
-for dir in L_ARTIST_PAGE:
-	os.makedirs('artists/' + dir, exist_ok=True)
-	os.makedirs('en/artists/' + dir, exist_ok=True)
 
 os.makedirs('artists/y.kusama_p', exist_ok=True)
 os.makedirs('en/artists/y.kusama_p', exist_ok=True)
@@ -91,6 +86,7 @@ def invalid_param_print(param, num, val):
 def check_zaiko_param(zs):
 	plog(sys._getframe().f_code.co_name)
 	errcnt = 0
+	l_artist = []
 	for dic in zs:
 		if not dic.get('DISPLAY') in ['ON', 'OFF']:
 			invalid_param_print('DISPLAY', dic['NUM'], dic['DISPLAY'])
@@ -108,10 +104,23 @@ def check_zaiko_param(zs):
 			invalid_param_print('TYPE', dic['NUM'], dic['TYPE'])
 			errcnt += 1
 
+		if dic['MORE'] == 'ON':
+			l_artist.append(dic['ID'])
+
+	l_artist = list(set(l_artist))
+
+	for dir in l_artist:
+		if re.search('^k.minami[0-9]$', dir):
+			os.makedirs('artists/k.minami', exist_ok=True)
+			os.makedirs('en/artists/k.minami', exist_ok=True)
+		else:
+			os.makedirs('artists/' + dir, exist_ok=True)
+			os.makedirs('en/artists/' + dir, exist_ok=True)
+
 	if errcnt != 0:
 		print('ERROR={}'.format(errcnt))
 
-	return
+	return l_artist
 
 ###############################################################################
 ## 各ページ種別の共通処理
@@ -133,7 +142,7 @@ def arg_collection(lang):
 	for dic in ld_zs:
 		dic['is_dup'] = False
 		aid = re.sub('[0-3]$', '', dic['ID']) #k.minami[1-3]が存在するため #TODO
-		if dic['DISPLAY'] != 'ON' or aid in L_ARTIST_PAGE:
+		if dic['DISPLAY'] != 'ON' or dic['MORE'] == 'ON':
 			continue
 		if pre_artist != aid:
 			d_aname[dic['ID']] = dic['NAME_E'] if lang =='en/' else dic['NAME']
@@ -219,7 +228,7 @@ def arg_yk_print(yk_fname, lang):
 
 
 def arg_art_detail(artid_f, lang):
-	anum = re.sub('_.*\.html', '', artid_f)
+	anum = re.sub('_[a-z].*.html', '', artid_f)
 	apage = False
 
 	d_zs_ad = {}
@@ -231,7 +240,7 @@ def arg_art_detail(artid_f, lang):
 			d_zs_ad = dic
 			break
 
-	if d_zs_ad['ID'] in L_ARTIST_PAGE:
+	if d_zs_ad['MORE'] == 'ON':
 		apage = re.sub('\.', '_', d_zs_ad['ID'])
 
 	d_zs_ad['IMGNUM'] = int(d_zs_ad['IMGNUM'])
@@ -416,7 +425,7 @@ def gen_art_detail_e(artid_f):
 
 L_LANG=('ja', 'en')
 
-check_zaiko_param(ld_zs)
+l_artist_page = check_zaiko_param(ld_zs)
 
 for l in L_LANG:
 	lang = '' if l == 'ja' else l + '/'
@@ -430,14 +439,14 @@ for l in L_LANG:
 		else:
 			gen_base_site_html(site, lang)
 
-	for artist in L_ARTIST_PAGE:
-		if artist == 'k.minami':
-			for i in range(3):
-				fname = 'page_' + re.sub('\.', '_', artist) + str(i+1) + '.html'
-				gen_artist_page_html(artist, fname, lang)
+	for artist in l_artist_page:
+		if re.search('^k.minami[0-9]$', artist):
+			fname = 'page_' + re.sub('\.', '_', artist) + '.html'
+			artist = re.sub('^k.minami[0-9]$', 'k.minami', artist)
 		else:
 			fname = 'page_' + re.sub('\.', '_', artist) + '.html'
-			gen_artist_page_html(artist, fname, lang)
+
+		gen_artist_page_html(artist, fname, lang)
 
 	for category in D_YK_GREP:
 		gen_grep_yk_html('grep_' + category + '.html', lang)
